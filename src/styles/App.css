@@ -1,3 +1,81 @@
 .App {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.head-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #3498db;
+  color: white;
+}
+
+.left, .right {
+  display: flex;
+}
+
+.right p {
+  margin-left: 10px;
+}
+
+/* styles.css o cualquier otro archivo de estilos */
+
+.floating-menu {
+  position: fixed;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  background-color: #3498db;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.floating-menu i {
+  margin-bottom: 10px;
+  font-size: 1.5rem;
+  color: white;
+  cursor: pointer;
+}
+
+/* estilos cards */
+
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-left: 4%; 
+}
+
+.card {
+  width: 300px;
+  margin: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.card-image {
+  height: 200px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.card-content {
+  padding: 10px;
+}
+
+.mission {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.place-name {
+  color: #555;
 }
