@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap');
+
+.Login{
+    font-family: 'Inter', sans-serif;
+}
+.fondo {
+    background: linear-gradient(to right, #6180EC, #B7C6FF);
+    height: 100vh;
+  }
+  .contenedor_principal {
+    display: flex;
+    flex-direction: column; /* Para apilar elementos verticalmente */
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+.titulo{
+    padding-top: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+    color: white;
+    
+}
+.titulo h1{
+    font-weight: bolder;
+}
+.contenedor_secundario{
+    background: #FFF;
+    border-radius: 20px;
+    width: 600px;
+    height: 500px;
+    padding: 20px;
+    margin: 50px;
+    box-shadow: -20px 20px 40px rgba(15, 18, 106, 0.34);
+    
+}
+.formulario{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 40px 80px;
+}
+.credenciales{
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+.credenciales label{
+    font-weight:500;
+    font-size: 16px;
+}
+
+.credenciales input {
+    font-size: 13px;
+    height: 27px;
+    padding-left: 10px;
+    
+    border-radius: 20px;
+    border: 2.5px solid #6381EC; /* Color por defecto */
+  
+    /* Estilos cuando el input está enfocado */
+    &:focus {
+      border-color: #E4EAF8; 
+      outline: none; 
+    }
+  }
+  .password-input {
+    
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  
+  .password-input input {
+    padding-right: 30px; /* Ajusta el espacio para el ícono del ojo */
+    flex: 1; /* Para que el input ocupe todo el espacio disponible */
+  }
+  
+  .password-input .eye-icon {
+    position: absolute;
+    right: 10px; /* Ajusta la posición del ícono del ojo */
+    cursor: pointer;
+  }
+  .boton{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .boton button{
+    background: linear-gradient(to right, #6180EC, #B7C6FF);
+    margin-top: 20px;
+    display: flex;
+    height: 35px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 50px;
+    color: white; /* Agrega color de texto para que sea visible en el fondo */
+    border: none; /* Elimina el borde predeterminado del botón */
+    border-radius: 90px; /* Agrega bordes redondeados si es necesario */
+    cursor: pointer;
+    
+  }
+  .formulario a{
+    margin-top: 5px;
+    font-size: 13px;
+    color: #B7C6FF;
+  }
