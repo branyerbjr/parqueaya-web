@@ -22,7 +22,7 @@ const cardData = [
   {
     image: 'URL_DE_LA_IMAGEN_2',
     mission: 'Real Plaza - AQP',
-    placeName: 'ver',
+    placeName: 'ver details',
   },
   // Agrega más datos de tarjetas según sea necesario
 ];
