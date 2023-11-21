@@ -3,6 +3,10 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './views/app';
 import Login from './views/login';
+import Dashboard from './views/dashboard';
+import Suscripciones from './views/suscripciones';
+import Usuarios from './views/usuarios';
+import Menu_Secundario from './views/menu_secundario';
 import reportWebVitals from './reportWebVitals';
 
 // Renderizando enrutador de navegador
@@ -20,6 +24,22 @@ const router = createBrowserRouter([
   {
     path: "login",
     element: <Login />,
+  },
+  {
+    path: "inicio",
+    element: <Dashboard />,
+  },
+  {
+    path: "menu",
+    element: <Menu_Secundario />,
+  },
+  {
+    path: "suscripciones",
+    element: <Suscripciones/>,
+  },
+  {
+    path: "usuarios",
+    element: <Usuarios/>,
   },
 ]);
 

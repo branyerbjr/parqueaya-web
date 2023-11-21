@@ -1,0 +1,79 @@
+/* App.css o tu archivo de estilos */
+
+.Login {
+  font-family: 'Inter', sans-serif;
+}
+
+
+.fondo {
+  min-height: 100vh;
+  background: linear-gradient(to right, #6180EC, #B7C6FF);
+}
+
+.contenedor_principal {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+
+.RoundedRectangle {
+  background: #FFF;
+  min-height: 760px;
+  border-radius: 20px;
+  width: 100%; /* Cambiado a un ancho del 100% para que se ajuste al contenedor_principal */
+  max-width: 1200px; /* Establecido un ancho máximo para evitar que el contenedor se expanda demasiado en pantallas grandes */
+  height: auto; /* Cambiado a auto para permitir que la altura se ajuste automáticamente según el contenido */
+  position: relative;
+  box-shadow: -20px 20px 40px rgba(15, 18, 106, 0.34);
+}
+
+
+.cards-container{
+  background: #FFF;
+  border-radius: 20px;
+  width: 90%;
+  height: auto;
+  padding: 20px;
+  margin: 5% auto; /* Auto para el margen horizontal, 5% para el margen superior e inferior */
+  box-shadow: -20px 20px 40px rgba(15, 18, 106, 0.34);
+  top: 50%;
+  left: 50%;
+  min-height: 600px;
+}
+
+/* Agregada una media query para estilos específicos en pantallas más pequeñas */
+@media only screen and (max-width: 768px) {
+  .contenedor_secundario {
+    width: 100%; /* Cambiado a un ancho del 100% en pantallas más pequeñas */
+    max-width: none; /* Eliminado el ancho máximo en pantallas más pequeñas */
+    margin: 10px;
+
+  }
+}
+
+.FloatingMenu {
+  position: absolute;
+  left: -3%; /* Cambiado a un valor relativo */
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Agregada una media query para estilos específicos en pantallas más pequeñas */
+@media only screen and (max-width: 768px) {
+  .contenedor_principal {
+    padding: 10px; /* Ajustes para pantallas más pequeñas */
+  }
+
+  .RoundedRectangle {
+    width: 90%; /* Cambiado a un ancho del 90% en pantallas más pequeñas */
+    max-width: none; /* Eliminado el ancho máximo en pantallas más pequeñas */
+  }
+
+  .FloatingMenu {
+    left: 1%; /* Ajustes específicos para pantallas más pequeñas */
+  }
+}

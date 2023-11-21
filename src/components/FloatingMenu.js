@@ -19,7 +19,7 @@ const FloatingMenu = () => {
   return (
     <div className="floating-menu" style={menuStyle}>
       <i className="bi bi-person" style={iconStyle}></i>
-      <i className="bi bi-folder" style={iconStyle}></i>
+      <i className="bi bi-folder" style={iconStyle} ></i>
       <i className="bi bi-radar" style={iconStyle}></i>
       <i className="bi bi-camera" style={iconStyle}></i>
       <i className="bi bi-image-fill" style={iconStyle}></i>

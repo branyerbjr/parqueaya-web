@@ -1,0 +1,42 @@
+.cards-container {
+    justify-content: center;
+    margin-left: 4%;
+    align-items: center;
+
+  }
+  
+  .cardmenu {
+    width: 300px;
+    margin: 10px;
+    border: 1px solid #B7C6FF;
+    background-color: #B7C6FF;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: -10px 10px 30px rgba(15, 18, 106, 0.1);
+    display: flex;
+    flex-direction: column;  /* Coloca el contenido en una columna */
+    align-items: center;
+    text-align: center;  /* Centra el texto dentro del card */
+  }
+  
+  .contenedor_secundario {
+    min-height: 400px;
+    justify-content: center;
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+  }
+  
+ .card-content .titulo{
+    color: #FFF;
+    padding-top: 0px;
+    font-weight: bold;
+    font-family: 'Inter', sans-serif;
+  font-size: 18px;
+ }
+  .cardmenu .bi {
+    padding-top: 100px;
+    font-size: 100px;  /* Tamaño de los íconos */
+    color: white;     /* Color blanco */
+  }
+  
