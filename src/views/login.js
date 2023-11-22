@@ -47,6 +47,10 @@ function Login() {
                 <button>Iniciar Sesión</button>
               </div>
               <a className="boton" href="#">¿Olvidaste tu contraseña?</a>
+              <div>
+              <a className="boton" href="#">¿No tienes cuenta? Registrate aquí</a>
+              </div>
+              
             </div>
             
           </div>

@@ -5,6 +5,8 @@ import React, { useState } from "react";
 import FloatingMenu from "../components/FloatingMenu";
 import HeadNav from "../components/HeadNav";
 import DetallesVentanaFlotante from "./DetallesVentanaFlotante";
+import { getUsers } from '../apis/users';
+
 
 function TableCard({ title, count, tableData, setSelectedCell }) {
   const handleCellClick = (rowData) => {
