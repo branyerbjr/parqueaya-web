@@ -35,10 +35,10 @@ const HeadNav = () => {
   return (
     <nav style={containerStyle}>
       <div className="left" style={textStyleLogo}>
-        <a href='#' style={linkStyle}>ParqueaYA!</a>
+        <a href='inicio' style={linkStyle}>ParqueaYA!</a>
       </div>
       <div className="right" style={textStyleMenu}>
-        <a href='#' style={linkStyle}>Inicio</a>
+        <a href='inicio' style={linkStyle}>Inicio</a>
         <a href='#' style={linkStyle}>Servidor</a>
         <a href='#' style={linkStyle}>Cámara</a>
       </div>

@@ -15,19 +15,22 @@ function DetallesVentanaFlotante({ rowData, onClose }) {
     onClose(); // Cerrar la ventana flotante después de guardar los cambios
   };
 
+  const handleDelete = () => {
+    // Aquí puedes implementar la lógica para eliminar los datos, por ejemplo, enviar una solicitud al servidor
+    console.log("Eliminar datos:", editedData);
+    onClose(); // Cerrar la ventana flotante después de eliminar los datos
+  };
+
   return (
     <div className="ventana-flotante">
         <h3>Editar Suscripción</h3>
-        <div className="content">
         <div className="content-2">
         <label>
           <i className="bi bi-person-circle"></i>
         </label>
-        </div>
+        <button onClick={handleDelete}>Eliminar</button>
+      </div>
       <div className="ventana-content">
-        
-        
-
         <label>
           ID:
           <input
@@ -81,7 +84,6 @@ function DetallesVentanaFlotante({ rowData, onClose }) {
       </div>
         </div>
         
-    </div>
   );
 }
 

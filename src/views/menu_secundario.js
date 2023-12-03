@@ -8,16 +8,19 @@ import Card from "../components/menu-card";
 const cardData = [
     {
       titulo: "Suscripciones",
-      icon: "bi bi-folder"
+      icon: "bi bi-folder",
+      to: "/suscripciones"
       
     },
     {
       titulo: "Administradores",
-      icon: "bi bi-person-rolodex"
+      icon: "bi bi-person-rolodex",
+      to: "/inicio"
     },
     {
         titulo: "Usuarios",
-        icon: "bi bi-person"
+        icon: "bi bi-person",
+        to: "/usuarios"
       },
   ];
 function Menu_Secundario() {
@@ -36,6 +39,7 @@ function Menu_Secundario() {
                       key={index}
                       titulo={card.titulo}
                       icon={card.icon}
+                      to={card.to}
                     />
                   ))}
               </div>

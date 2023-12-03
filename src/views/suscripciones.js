@@ -29,7 +29,7 @@ function TableCard({ title, count, tableData, setSelectedCell }) {
           </thead>
           <tbody>
             {tableData.map((row, index) => (
-              <tr key={index}>
+              <tr key={index} >
                 <td>{row.data1}</td>
                 <td>{row.data2}</td>
                 <td>{row.data3}</td>

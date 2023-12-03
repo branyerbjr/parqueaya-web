@@ -1,69 +1,48 @@
-// Contenedor.js
+import React, { useState, useEffect } from "react";
 
-import "../styles/Suscripciones.css";
-import React, { useState } from "react";
+import { getUsers } from '../apis/users';
 import FloatingMenu from "../components/FloatingMenu";
 import HeadNav from "../components/HeadNav";
-import DetallesVentanaFlotante from "./DetallesVentanaFlotante";
-import { getUsers } from '../apis/users';
+import DetallesVentanaFlotanteUsuario from "./DetallesVentanaFlotanteUsuario";
+import TableCard from "../components/tablecard"; // Asegúrate de que la importación sea correcta
 
-
-function TableCard({ title, count, tableData, setSelectedCell }) {
-  const handleCellClick = (rowData) => {
-    setSelectedCell(rowData);
-  };
-
-  return (
-    <div className="tabla-card">
-      <h2 className="title">{title}</h2>
-      <p>{count}</p>
-      <div className="tabla">
-        <table>
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Usuario</th>
-              <th>Apellidos</th>
-              <th>Nombres</th>
-              <th>Correo</th>
-              <th>Contraseña</th>
-              <th>Token</th>
-              <th>Fecha Registro</th>
-            </tr>
-          </thead>
-          <tbody>
-            {tableData.map((row, index) => (
-              <tr key={index}>
-                <td>{row.data1}</td>
-                <td onClick={() => handleCellClick(row)}>{row.data2}</td>
-                <td>{row.data3}</td>
-                <td>{row.data4}</td>
-                <td>{row.data5}</td>
-                <td>{row.data6}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </div>
-  );
-}
-
-const cardtabla = [
-  {
-    tableData: [
-      { data1: "1", data2: "10/11/2023", data3: "ARQ", data4: "Mall Porongoche", data5: "10", data6: "2" },
-      { data1: "2", data2: "07/10/2023", data3: "LIM", data4: "Mall del Sur", data5: "9", data6: "1" },
-      { data1: "3", data2: "01/06/2022", data3: "ARQ", data4: "Parque Lambramani", data5: "12", data6: "2" },
-    ],
-  },
-];
-
-function Suscripciones() {
+function Usuarios() {
   const [selectedCell, setSelectedCell] = useState(null);
+  const [users, setUsers] = useState([]);
+  const [updatePage, setUpdatePage] = useState(false);
+
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        const users = await getUsers();
+        setUsers(users);
+      } catch (error) {
+        console.error('Error al obtener usuarios:', error);
+      }
+    };
+
+    fetchUsers();
+  }, [updatePage]); // Agrega updatePage como dependencia para que se vuelva a ejecutar cuando cambie
+
+  
+  const handleAddUser = (newUserData) => {
+    setUpdatePage((prev) => !prev);
+    
+  };
+  
   const handleCloseVentanaFlotante = () => {
     setSelectedCell(null);
   };
+
+  // Crea un array de objetos para cada tarjeta de tabla
+  const cardtabla = [
+    {
+      titulo: "Usuarios",
+      count: users.length,
+      tableData: users,
+    },
+    // Agrega más tarjetas de tabla según tus necesidades
+  ];
 
   return (
     <div className="Dashboard">
@@ -75,19 +54,24 @@ function Suscripciones() {
             </div>
             <HeadNav />
             <div className="cards-container">
+              <div className="tabla-usuarios">
               {cardtabla.map((card, index) => (
                 <TableCard
                   key={index}
                   title={card.titulo}
                   count={card.count}
                   tableData={card.tableData}
-                  setSelectedCell={setSelectedCell} // Pass setSelectedCell as a prop
+                  setSelectedCell={setSelectedCell}
+                  onAddUser={handleAddUser}
+                  updatePage={updatePage} // Pasar updatePage como prop
                 />
               ))}
+              </div>
             </div>
             {selectedCell && (
-              <DetallesVentanaFlotante
+              <DetallesVentanaFlotanteUsuario
                 rowData={selectedCell}
+                setUpdatePage={setUpdatePage}
                 onClose={handleCloseVentanaFlotante}
               />
             )}
@@ -98,4 +82,4 @@ function Suscripciones() {
   );
 }
 
-export default Suscripciones;
+export default Usuarios;
