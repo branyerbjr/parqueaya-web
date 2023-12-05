@@ -14,6 +14,7 @@ function Deverices() {
             </div>
             <HeadNav />
             <div className="cards-container">
+              <div className="card"> 
               <video width="100%" height="100%" controls>
                 <source
                   src="http://ip:5000/video_feed"
@@ -21,6 +22,8 @@ function Deverices() {
                 />
                 Tu navegador no soporta la etiqueta de video.
               </video>
+              </div>
+              
             </div>
           </div>
         </div>
