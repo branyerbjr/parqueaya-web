@@ -1,8 +1,8 @@
 // DetallesVentanaFlotante.js
 
 import React, { useState } from "react";
-import { updateUser } from "../apis/users";
-import { deleteUser } from "../apis/users";
+import { updateUser } from "../apis/admins";
+import { deleteUser } from "../apis/admins";
 
 function DetallesVentanaFlotante({ rowData, setUpdatePage , onClose }) {
   const [editedData, setEditedData] = useState({ ...rowData });
@@ -63,6 +63,15 @@ function DetallesVentanaFlotante({ rowData, setUpdatePage , onClose }) {
               />
             </label>
             <label>
+              Usuario:
+              <input
+                type="text"
+                name="usuario"
+                value={editedData.usuario}
+                onChange={(e) => handleInputChange("usuario", e.target.value)}
+              />
+            </label>
+            <label>
               Nombre:
               <input
                 type="text"
@@ -79,16 +88,6 @@ function DetallesVentanaFlotante({ rowData, setUpdatePage , onClose }) {
                 name="apellidos"
                 value={editedData.apellidos}
                 onChange={(e) => handleInputChange("apellidos", e.target.value)}
-              />
-            </label>
-
-            <label>
-              Correo:
-              <input
-                type="text"
-                name="correo"
-                value={editedData.correo}
-                onChange={(e) => handleInputChange("correo", e.target.value)}
               />
             </label>
 

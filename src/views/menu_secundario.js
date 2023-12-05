@@ -15,7 +15,7 @@ const cardData = [
     {
       titulo: "Administradores",
       icon: "bi bi-person-rolodex",
-      to: "/inicio"
+      to: "/administradores"
     },
     {
         titulo: "Usuarios",

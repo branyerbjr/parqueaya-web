@@ -6,6 +6,7 @@ import Login from './views/login';
 import Dashboard from './views/dashboard';
 import Suscripciones from './views/suscripciones';
 import Usuarios from './views/usuarios';
+import Administradores from './views/administradores';
 import Menu_Secundario from './views/menu_secundario';
 import reportWebVitals from './reportWebVitals';
 
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
   {
     path: "usuarios",
     element: <Usuarios/>,
+  },
+  {
+    path: "administradores",
+    element: <Administradores/>,
   },
 ]);
 
