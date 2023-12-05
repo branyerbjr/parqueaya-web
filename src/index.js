@@ -8,6 +8,7 @@ import Suscripciones from './views/suscripciones';
 import Usuarios from './views/usuarios';
 import Menu_Secundario from './views/menu_secundario';
 import reportWebVitals from './reportWebVitals';
+import Deverices from './views/Devices';
 
 // Renderizando enrutador de navegador
 import {
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
   {
     path: "usuarios",
     element: <Usuarios/>,
+  },
+  {
+    path: "cams",
+    element: <Deverices/>
   },
 ]);
 

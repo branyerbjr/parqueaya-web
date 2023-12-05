@@ -21,7 +21,7 @@ const FloatingMenu = () => {
       <i className="bi bi-person" style={iconStyle}></i>
       <a href='menu'><i className="bi bi-folder" style={iconStyle}></i></a>
       <i className="bi bi-radar" style={iconStyle}></i>
-      <i className="bi bi-camera" style={iconStyle}></i>
+      <a href='cams'><i className="bi bi-camera" style={iconStyle}></i></a>
       <i className="bi bi-image-fill" style={iconStyle}></i>
       <i className="bi bi-gear" style={iconStyle}></i>
     </div>
