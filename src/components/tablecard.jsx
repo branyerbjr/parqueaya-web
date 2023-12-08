@@ -1,6 +1,6 @@
 import "../styles/TableCard.css";
 import React, { useState } from 'react';
-import AddUserModal from '../views/AddUserModal';
+import AddUserModal from './AddUserModal';
 
 const TableCard = ({ title, tableData, setSelectedCell, onAddUser, updatePage }) => {
   const [searchTerm, setSearchTerm] = React.useState("");
@@ -74,7 +74,6 @@ const TableCard = ({ title, tableData, setSelectedCell, onAddUser, updatePage })
             <th>Nombres</th>
             <th>Apellidos</th>
             <th>Correo</th>
-            <th>Contraseña</th>
             <th>Fecha Registro</th>
           </tr>
         </thead>
@@ -90,7 +89,6 @@ const TableCard = ({ title, tableData, setSelectedCell, onAddUser, updatePage })
               </td>
               <td>{user.apellidos}</td>
               <td>{user.correo}</td>
-              <td>{user.contraseña}</td>
               <td>{formatFechaRegistro(user.fecha_registro)}</td>
             </tr>
           ))}

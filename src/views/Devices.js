@@ -13,18 +13,7 @@ function Deverices() {
               <FloatingMenu />
             </div>
             <HeadNav />
-            <div className="cards-container">
-              <div className="card"> 
-              <video width="100%" height="100%" controls>
-                <source
-                  src="http://ip:5000/video_feed"
-                  type="multipart/x-mixed-replace; boundary=frame"
-                />
-                Tu navegador no soporta la etiqueta de video.
-              </video>
-              </div>
-              
-            </div>
+            
           </div>
         </div>
       </div>

@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { getAdmins } from '../apis/admins';
 import FloatingMenu from "../components/FloatingMenu";
 import HeadNav from "../components/HeadNav";
-import DetallesVentanaFlotanteUsuario from "./DetallesVentanaFlotanteAdministrador";
+import DetallesVentanaFlotanteUsuario from "../components/DetallesVentanaFlotanteAdministrador";
 import TableCard from "../components/tablecard-admins"; // Asegúrate de que la importación sea correcta
 
 function Administradores() {

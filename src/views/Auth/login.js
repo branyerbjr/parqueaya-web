@@ -1,17 +1,17 @@
-import "../styles/Login.css";
+import "../../styles/Login.css";
 import React, { useState } from "react";
-import FloatingMenu from "../components/FloatingMenu";
-import { getAdmins } from '../apis/admins';
+import FloatingMenu from "../../components/FloatingMenu";
+import { getAdmins } from '../../apis/admins';
 import { useNavigate } from 'react-router-dom';
+import useAuth from '../Auth/auth';
 
 function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-const [clearInputs, setClearInputs] = useState(false);
-
-
+  const [clearInputs, setClearInputs] = useState(false);
+  const auth = useAuth();
   const navigate = useNavigate();
 
   const togglePasswordVisibility = () => {
@@ -25,22 +25,15 @@ const [clearInputs, setClearInputs] = useState(false);
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
   };
+  
   const handleLogin = async () => {
-    try {
-      const admins = await getAdmins();
-  
-      const isValidUser = admins.some(
-        (admin) => admin.usuario === username && admin.contraseña === password
-      );
-  
-      if (isValidUser) {
-        navigate("/inicio");
-      } else {
-        setErrorMessage("*Usuario y/o contraseña inválidos");
-        setClearInputs(true);
-      }
-    } catch (error) {
-      console.error("Error during login:", error);
+    await auth.login(username, password);
+
+    if (auth.isAuthenticated) {
+      navigate("/inicio");
+    } else {
+      // En caso de error en la autenticación, puedes utilizar el mensaje de error del hook de autenticación
+      setClearInputs(true);
     }
   };
   
@@ -70,7 +63,6 @@ const [clearInputs, setClearInputs] = useState(false);
                 </label>
                 <div className="password-input">
     <input type={showPassword ? "text" : "password"} id="clave"  value={clearInputs ? "" : password} onChange={handlePasswordChange} />
-    {/* Eye icon and password visibility toggle */}
     <span className="eye-icon" onClick={togglePasswordVisibility}>
       {showPassword ? <i className="fas fa-eye-slash"></i> : <i className="fas fa-eye"></i>}
     </span>

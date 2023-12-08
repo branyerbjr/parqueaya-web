@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './views/app';
-import Login from './views/login';
+import Login from './views/Auth/login';
 import Dashboard from './views/dashboard';
 import Suscripciones from './views/suscripciones';
 import Usuarios from './views/usuarios';

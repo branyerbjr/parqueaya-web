@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { getUsers } from '../apis/users';
 import FloatingMenu from "../components/FloatingMenu";
 import HeadNav from "../components/HeadNav";
-import DetallesVentanaFlotanteUsuario from "./DetallesVentanaFlotanteUsuario";
+import DetallesVentanaFlotanteUsuario from "../components/DetallesVentanaFlotanteUsuario";
 import TableCard from "../components/tablecard"; // Asegúrate de que la importación sea correcta
 
 function Usuarios() {
