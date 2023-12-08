@@ -90,8 +90,10 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    
   }
   .boton button{
+    
     background: linear-gradient(to right, #6180EC, #B7C6FF);
     margin-top: 20px;
     display: flex;

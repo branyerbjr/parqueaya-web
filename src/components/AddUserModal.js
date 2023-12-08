@@ -46,6 +46,7 @@ const AddUserModal = ({ onClose, onAddUser }) => {
   };
 
   return (
+    
     <div className="modal">
       <div className="modal-content">
         <h2>Agregar Usuario</h2>

@@ -1,11 +1,16 @@
 // auth.js
 
 import { useState, useEffect } from 'react';
-import { getAdmins } from '../../apis/admins'; // Ajusta la ruta según tu estructura
+import { useNavigate } from 'react-router-dom'; // Importa useNavigate desde react-router-dom
+import { getAdmins } from '../../apis/admins';
 
 const useAuth = () => {
+  const navigate = useNavigate(); // Obtiene la función de navegación
+
   const storedAuthData = localStorage.getItem('authData');
-  const initialAuthData = storedAuthData ? JSON.parse(storedAuthData) : { isAuthenticated: false, user: null };
+  const initialAuthData = storedAuthData
+    ? JSON.parse(storedAuthData)
+    : { isAuthenticated: false, user: null };
 
   const [authData, setAuthData] = useState(initialAuthData);
 
@@ -22,7 +27,7 @@ const useAuth = () => {
         localStorage.setItem('authData', JSON.stringify(newAuthData));
       } else {
         setAuthData({ isAuthenticated: false, user: null });
-        localStorage.removeItem('authData'); // Elimina la información si el login falla
+        localStorage.removeItem('authData');
       }
     } catch (error) {
       console.error('Error during login:', error);
@@ -32,6 +37,7 @@ const useAuth = () => {
   const logout = () => {
     setAuthData({ isAuthenticated: false, user: null });
     localStorage.removeItem('authData');
+    navigate('/inicio'); // Utiliza navigate en lugar de history para redirigir al inicio
   };
 
   return {

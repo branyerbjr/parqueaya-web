@@ -22,6 +22,7 @@ const cardData = [
         icon: "bi bi-person",
         to: "/usuarios"
       },
+    
   ];
 function Menu_Secundario() {
     return (

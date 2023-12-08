@@ -27,6 +27,12 @@ function Login() {
   };
   
   const handleLogin = async () => {
+     // Validación de campos obligatorios
+     if (!username || !password) {
+      setErrorMessage("*Por favor, completa todos los campos.");
+      return;
+    }
+
     await auth.login(username, password);
 
     if (auth.isAuthenticated) {

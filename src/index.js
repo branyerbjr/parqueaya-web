@@ -6,8 +6,9 @@ import Login from './views/Auth/login';
 import Dashboard from './views/dashboard';
 import Suscripciones from './views/suscripciones';
 import Usuarios from './views/usuarios';
-import Administradores from './views/administradores';
+import Administradores from '../src/views/Admins/administradores';
 import Menu_Secundario from './views/menu_secundario';
+import Autentificacion from './components/Autentificacion';
 import reportWebVitals from './reportWebVitals';
 import Deverices from './views/Devices';
 
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
   {
     path: "administradores",
     element: <Administradores/>,
+  },
+  {
+    path: "autentificacion",
+    element: <Autentificacion/>,
   },
 ]);
 

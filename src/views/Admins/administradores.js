@@ -1,30 +1,37 @@
 import React, { useState, useEffect } from "react";
-
-import { getAdmins } from '../apis/admins';
-import FloatingMenu from "../components/FloatingMenu";
-import HeadNav from "../components/HeadNav";
-import DetallesVentanaFlotanteUsuario from "../components/DetallesVentanaFlotanteAdministrador";
-import TableCard from "../components/tablecard-admins"; // Asegúrate de que la importación sea correcta
+import useAuth from "../Auth/auth";
+import { Navigate } from "react-router-dom";
+import { getAdmins } from '../../apis/admins';
+import FloatingMenu from "../../components/FloatingMenu";
+import HeadNav from "../../components/HeadNav";
+import DetallesVentanaFlotanteUsuario from "../../components/DetallesVentanaFlotanteAdministrador";
+import TableCard from "../../components/tablecard-admins"; 
 
 function Administradores() {
   const [selectedCell, setSelectedCell] = useState(null);
   const [admins, setAdmins] = useState([]);
   const [updatePage, setUpdatePage] = useState(false);
+  const auth = useAuth();
 
   useEffect(() => {
-    const fetchAdmins = async () => {
-      try {
-        const admins = await getAdmins();
-        setAdmins(admins);
-      } catch (error) {
-        console.error('Error al obtener administradores:', error);
-      }
-    };
+    // Verificar si el usuario está autenticado
+    if (!auth.isAuthenticated) {
+      // Si no está autenticado, redirigir a la página de inicio de sesión
+      window.location.href = "/autentificacion";
+    } else {
+      const fetchAdmins = async () => {
+        try {
+          const admins = await getAdmins();
+          setAdmins(admins);
+        } catch (error) {
+          console.error('Error al obtener administradores:', error);
+        }
+      };
 
-    fetchAdmins();
-  }, [updatePage]); // Agrega updatePage como dependencia para que se vuelva a ejecutar cuando cambie
+      fetchAdmins();
+    }
+  }, [auth.isAuthenticated, updatePage]);
 
-  
   const handleAddUser = (newUserData) => {
     setUpdatePage((prev) => !prev);
     

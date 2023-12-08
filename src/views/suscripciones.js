@@ -63,7 +63,7 @@ function Suscripciones() {
   // Verificar si el usuario está autenticado
   if (!auth.isAuthenticated) {
     // Si no está autenticado, redirigir a la página de inicio de sesión
-    return <Navigate to="/" />;
+    return <Navigate to="/autentificacion" />;
   }
 
   const handleCloseVentanaFlotante = () => {

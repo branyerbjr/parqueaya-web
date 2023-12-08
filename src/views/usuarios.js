@@ -5,26 +5,34 @@ import FloatingMenu from "../components/FloatingMenu";
 import HeadNav from "../components/HeadNav";
 import DetallesVentanaFlotanteUsuario from "../components/DetallesVentanaFlotanteUsuario";
 import TableCard from "../components/tablecard"; // Asegúrate de que la importación sea correcta
+import useAuth from "./Auth/auth";
 
 function Usuarios() {
   const [selectedCell, setSelectedCell] = useState(null);
   const [users, setUsers] = useState([]);
   const [updatePage, setUpdatePage] = useState(false);
+  const auth = useAuth();
 
   useEffect(() => {
-    const fetchUsers = async () => {
-      try {
-        const users = await getUsers();
-        setUsers(users);
-      } catch (error) {
-        console.error('Error al obtener usuarios:', error);
-      }
-    };
+    // Verificar si el usuario está autenticado
+    if (!auth.isAuthenticated) {
+      // Si no está autenticado, redirigir a la página de inicio de sesión
+      window.location.href = "/autentificacion";
+    } else {
+      const fetchUsers = async () => {
+        try {
+          const users = await getUsers();
+          setUsers(users);
+        } catch (error) {
+          console.error('Error al obtener usuarios:', error);
+        }
+      };
 
-    fetchUsers();
-  }, [updatePage]); // Agrega updatePage como dependencia para que se vuelva a ejecutar cuando cambie
+      fetchUsers();
+    }
+  }, [auth.isAuthenticated, updatePage]);
 
-  
+
   const handleAddUser = (newUserData) => {
     setUpdatePage((prev) => !prev);
     
