@@ -32,19 +32,6 @@
 }
 
 
-.cards-container{
-  background: #FFF;
-  border-radius: 20px;
-  width: 90%;
-  height: auto;
-  padding: 20px;
-  margin: 5% auto; /* Auto para el margen horizontal, 5% para el margen superior e inferior */
-  box-shadow: -20px 20px 40px rgba(15, 18, 106, 0.34);
-  top: 50%;
-  left: 50%;
-  min-height: 600px;
-}
-
 /* Agregada una media query para estilos específicos en pantallas más pequeñas */
 @media only screen and (max-width: 768px) {
   .contenedor_secundario {

@@ -37,7 +37,7 @@ const useAuth = () => {
   const logout = () => {
     setAuthData({ isAuthenticated: false, user: null });
     localStorage.removeItem('authData');
-    navigate('/inicio'); // Utiliza navigate en lugar de history para redirigir al inicio
+    navigate('/dash'); // Utiliza navigate en lugar de history para redirigir al inicio
   };
 
   return {

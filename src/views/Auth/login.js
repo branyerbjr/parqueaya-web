@@ -1,9 +1,10 @@
 import "../../styles/Login.css";
 import React, { useState } from "react";
 import FloatingMenu from "../../components/FloatingMenu";
-import { getAdmins } from '../../apis/admins';
-import { useNavigate } from 'react-router-dom';
-import useAuth from '../Auth/auth';
+import { getAdmins } from "../../apis/admins";
+import { useNavigate } from "react-router-dom";
+import useAuth from "../Auth/auth";
+import { Link } from "react-router-dom";
 
 function Login() {
   const [showPassword, setShowPassword] = useState(false);
@@ -25,24 +26,23 @@ function Login() {
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
   };
-  
+
   const handleLogin = async () => {
-     // Validación de campos obligatorios
-     if (!username || !password) {
-      setErrorMessage("*Por favor, completa todos los campos.");
+    // Validación de campos obligatorios
+    if (!username || !password) {
+      alert("Por favor, completa todos los campos.");
       return;
     }
 
     await auth.login(username, password);
 
     if (auth.isAuthenticated) {
-      navigate("/inicio");
+      navigate("/dash");
     } else {
-      // En caso de error en la autenticación, puedes utilizar el mensaje de error del hook de autenticación
-      setClearInputs(true);
+      alert("Credenciales inválidas");
     }
   };
-  
+
   <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
@@ -61,34 +61,50 @@ function Login() {
                 <label className="mb-2" htmlFor="usuario">
                   Usuario
                 </label>
-                <input type="text" id="usuario" value={clearInputs ? "" : username} onChange={handleUsernameChange} />
+                <input
+                  type="text"
+                  id="usuario"
+                  value={clearInputs ? "" : username}
+                  onChange={handleUsernameChange}
+                />
               </div>
               <div className="credenciales">
                 <label className="mb-2" htmlFor="clave">
                   Clave
                 </label>
                 <div className="password-input">
-    <input type={showPassword ? "text" : "password"} id="clave"  value={clearInputs ? "" : password} onChange={handlePasswordChange} />
-    <span className="eye-icon" onClick={togglePasswordVisibility}>
-      {showPassword ? <i className="fas fa-eye-slash"></i> : <i className="fas fa-eye"></i>}
-    </span>
-    
-
-  </div>
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    id="clave"
+                    value={clearInputs ? "" : password}
+                    onChange={handlePasswordChange}
+                  />
+                  <span className="eye-icon" onClick={togglePasswordVisibility}>
+                    {showPassword ? (
+                      <i className="fas fa-eye-slash"></i>
+                    ) : (
+                      <i className="fas fa-eye"></i>
+                    )}
+                  </span>
+                </div>
               </div>
               <div className="error-message" style={{ color: "red" }}>
-  {errorMessage}
-</div>
+                {errorMessage}
+              </div>
               <div className="boton">
-              <button onClick={handleLogin}>Iniciar Sesión</button>
+                <button onClick={handleLogin}>Iniciar Sesión</button>
               </div>
-              <a className="boton" href="#">¿Olvidaste tu contraseña?</a>
+              <a className="boton" style={{ textDecoration: 'none' }} href="#">
+                ¿Olvidaste tu contraseña?
+              </a>
               <div>
-              <a className="boton" href="#">¿No tienes cuenta? Registrate aquí</a>
+                <Link to="/login/registro" style={{ textDecoration: 'none' }}>
+                <div className="boton">
+                  <a>¿No tienes cuenta? Registrate aquí</a>
+                </div>
+              </Link>
               </div>
-              
             </div>
-            
           </div>
         </div>
       </div>

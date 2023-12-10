@@ -34,7 +34,7 @@ function Menu_Secundario() {
                   <FloatingMenu />
                 </div>
                 <HeadNav />
-                <div className="cards-container">
+                <div className="cards-container-menu">
                   {cardData.map((card, index) => (
                     <Card
                       key={index}

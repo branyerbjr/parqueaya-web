@@ -8,11 +8,11 @@ const AuthenticationError = () => {
       <div className="fondo">
         <div className="contenedor_principal">
           <div className="RoundedRectangle">
-          <div className="cards-container">
+          <div className="cards-container-autentificacion">
             <div>
               <h1>Opps... Inicia Sesión primero</h1>
               <p>Para acceder a esta página, necesitas iniciar sesión.</p>
-              <Link to="/" style={{ textDecoration: 'none' }}>
+              <Link to="/login" style={{ textDecoration: 'none' }}>
                 <div className="boton">
                   <button>Login</button>
                 </div>

@@ -3,6 +3,7 @@ import { addUser } from '../apis/users';
 import "../styles/TableCard.css";
 
 const AddUserModal = ({ onClose, onAddUser }) => {
+  const [showPassword, setShowPassword] = useState(false);
   const [newUserData, setNewUserData] = useState({
     nombres: '',
     apellidos: '',
@@ -11,6 +12,11 @@ const AddUserModal = ({ onClose, onAddUser }) => {
     // Otros campos según tus necesidades
   });
 
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+
+  };
+  
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setNewUserData((prevData) => ({
@@ -44,12 +50,23 @@ const AddUserModal = ({ onClose, onAddUser }) => {
       // Puedes agregar un manejo de errores más específico si es necesario
     }
   };
-
-  return (
-    
-    <div className="modal">
-      <div className="modal-content">
-        <h2>Agregar Usuario</h2>
+return (
+  <div className="modal-agregar-administrador">
+    <div className="ventana-flotante">
+      <h3>Agregar Usuario</h3>
+      <div className="content-2">
+        <label>
+          <i className="bi bi-person-circle"></i>
+        </label>
+      </div>
+      <div className="ventana-content">
+        <label>Usuario:</label>
+        <input
+          type="text"
+          name="usuario"
+          value={newUserData.usuario}
+          onChange={handleInputChange}
+        />
         <label>Nombres:</label>
         <input
           type="text"
@@ -64,26 +81,29 @@ const AddUserModal = ({ onClose, onAddUser }) => {
           value={newUserData.apellidos}
           onChange={handleInputChange}
         />
-        <label>Correo:</label>
-        <input
-          type="email"
-          name="correo"
-          value={newUserData.correo}
-          onChange={handleInputChange}
-        />
-        <label>Contraseña:</label>
-        <input
-          type="password"
-          name="contraseña"
-          value={newUserData.contraseña}
-          onChange={handleInputChange}
-        />
-        {/* Otros campos del usuario */}
+        <label className="mb-2" htmlFor="clave">
+        Contraseña
+        </label>
+        <div className="password-input">
+          <input
+            type={showPassword ? "text" : "password"}
+            name="contraseña"
+            value={newUserData.contraseña}
+            onChange={handleInputChange}
+          />
+          <span className="eye-icon" onClick={togglePasswordVisibility}>
+            {showPassword ? (
+              <i className="fas fa-eye-slash"></i>
+            ) : (
+              <i className="fas fa-eye"></i>
+            )}
+          </span>
+        </div>
         <button onClick={handleAddUser}>Agregar</button>
         <button onClick={onClose}>Cancelar</button>
       </div>
     </div>
-  );
+  </div>
+);
 };
-
 export default AddUserModal;

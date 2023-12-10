@@ -2,6 +2,8 @@
 import React, { useState } from 'react';
 import useAuth from '../views/Auth/auth';
 import { Link } from 'react-router-dom'; 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
 
 const containerStyle = {
   margin: '0px 20px',
@@ -84,22 +86,23 @@ const HeadNav = () => {
   return (
     <nav style={containerStyle}>
       <div className="left" style={textStyleLogo}>
-        <a href='inicio' style={linkStyle}>ParqueaYA!</a>
+        <a href='/' style={linkStyle}>ParqueaYA!</a>
       </div>
       <div className="right" style={textStyleMenu}>
-        <a href='inicio' style={linkStyle}>Inicio</a>
+        <a href='/' style={linkStyle}>Inicio</a>
         <a href='#' style={linkStyle}>Servidor</a>
         <a href='#' style={linkStyle}>Cámara</a>
         <div style={{ position: 'relative' }}>
-          {auth.isAuthenticated ? (
-            <a href='#' style={usuario} onClick={toggleOptions}>
-              {auth.user.username}
-            </a>
-          ) : (
-            <Link to="/">
-              <button style={buttonStyle}>Iniciar Sesión</button>
-            </Link>
-          )}
+        {auth.isAuthenticated ? (
+  <a href='#' style={usuario} onClick={toggleOptions}>
+    <FontAwesomeIcon icon={faUser} style={{ marginRight: '8px' }} />
+    {auth.user.username}
+  </a>
+) : (
+  <Link to="/login">
+    <button style={buttonStyle}>Iniciar Sesión</button>
+  </Link>
+)}
           {optionsVisible && auth.isAuthenticated && (
             <div style={dropdownStyle}>
               <button onClick={handleLogout}>

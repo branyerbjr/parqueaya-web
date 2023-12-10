@@ -13,7 +13,7 @@ function Administradores() {
   const [updatePage, setUpdatePage] = useState(false);
   const auth = useAuth();
 
-  useEffect(() => {
+  /*useEffect(() => {
     // Verificar si el usuario está autenticado
     if (!auth.isAuthenticated) {
       // Si no está autenticado, redirigir a la página de inicio de sesión
@@ -30,7 +30,7 @@ function Administradores() {
 
       fetchAdmins();
     }
-  }, [auth.isAuthenticated, updatePage]);
+  }, [auth.isAuthenticated, updatePage]);*/
 
   const handleAddUser = (newUserData) => {
     setUpdatePage((prev) => !prev);

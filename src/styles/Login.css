@@ -3,10 +3,6 @@
 .Login{
     font-family: 'Inter', sans-serif;
 }
-.fondo {
-    background: linear-gradient(to right, #6180EC, #B7C6FF);
-    height: 100vh;
-  }
   .contenedor_principal {
     display: flex;
     flex-direction: column; /* Para apilar elementos verticalmente */
@@ -61,12 +57,7 @@
     
     border-radius: 20px;
     border: 2.5px solid #6381EC; /* Color por defecto */
-  
-    /* Estilos cuando el input está enfocado */
-    &:focus {
-      border-color: #E4EAF8; 
-      outline: none; 
-    }
+    outline: none;
   }
   .password-input {
     
@@ -102,14 +93,21 @@
     justify-content: center;
     align-items: center;
     padding: 10px 50px;
-    color: white; /* Agrega color de texto para que sea visible en el fondo */
+    font-weight: bold;
+    color: rgb(255, 255, 255); /* Agrega color de texto para que sea visible en el fondo */
     border: none; /* Elimina el borde predeterminado del botón */
     border-radius: 90px; /* Agrega bordes redondeados si es necesario */
     cursor: pointer;
     
   }
+
+  .boton button:hover {
+    background: #6180EC;
+   
+  }
+
   .formulario a{
     margin-top: 5px;
     font-size: 13px;
-    color: #B7C6FF;
+    color: #100e0c;
   }

@@ -1,13 +1,53 @@
 
   /* estilos cards */
 
-.cards-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-left: 4%; 
-}
 
+  .cards-container{
+    background: #FFF;
+    border-radius: 20px;
+    width: 90%;
+    height: auto;
+    padding: 20px;
+    margin: 5% auto; /* Auto para el margen horizontal, 5% para el margen superior e inferior */
+    box-shadow: -20px 20px 40px rgba(15, 18, 106, 0.34);
+    top: 50%;
+    left: 50%;
+    min-height: 600px;
+    display: flex;
+    flex-direction: column; /* Asegúrate de que el contenido se coloque en columnas */
+    align-items: center;
+  }
+  
+  .cards-container-autentificacion{
+    background: #FFF;
+    border-radius: 20px;
+    width: 90%;
+    height: auto;
+    padding: 20px;
+    margin: 5% auto; /* Auto para el margen horizontal, 5% para el margen superior e inferior */
+    box-shadow: -20px 20px 40px rgba(15, 18, 106, 0.34);
+    top: 50%;
+    left: 50%;
+    min-height: 600px;
+    display: flex;
+    flex-direction: column; /* Asegúrate de que el contenido se coloque en columnas */
+    align-items: center;
+    justify-content: center;
+  }
+  
+
+.dashboard-container{
+  background: #FFF;
+    border-radius: 20px;
+    width: 80%;
+    height: auto;
+    padding: 20px;
+    margin: 5% auto; /* Auto para el margen horizontal, 5% para el margen superior e inferior */
+    box-shadow: -20px 20px 40px rgba(15, 18, 106, 0.34);
+    top: 50%;
+    left: 50%;
+    min-height: 600px; 
+}
 .card {
   width: 300px;
   margin: 10px;

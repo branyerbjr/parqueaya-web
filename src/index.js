@@ -9,6 +9,7 @@ import Usuarios from './views/usuarios';
 import Administradores from '../src/views/Admins/administradores';
 import Menu_Secundario from './views/menu_secundario';
 import Autentificacion from './components/Autentificacion';
+import Registro from './views/Auth/registro';
 import reportWebVitals from './reportWebVitals';
 import Deverices from './views/Devices';
 
@@ -21,11 +22,11 @@ import {
 // constante router
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "login",
     element: <Login  />,
   },
   {
-    path: "inicio",
+    path: "/",
     element: <Dashboard />,
   },
   {
@@ -47,6 +48,10 @@ const router = createBrowserRouter([
   {
     path: "autentificacion",
     element: <Autentificacion/>,
+  },
+  {
+    path: "/login/registro",
+    element: <Registro/>,
   },
 ]);
 
