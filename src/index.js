@@ -10,6 +10,7 @@ import Administradores from '../src/views/Admins/administradores';
 import Menu_Secundario from './views/menu_secundario';
 import Autentificacion from './components/Autentificacion';
 import Registro from './views/Auth/registro';
+import Palanca from './views/Admins/palanca';
 import reportWebVitals from './reportWebVitals';
 import Deverices from './views/Devices';
 
@@ -53,6 +54,10 @@ const router = createBrowserRouter([
     path: "/login/registro",
     element: <Registro/>,
   },
+  {
+    path: "palanca",
+    element: <Palanca/>,
+  }
 ]);
 
 
