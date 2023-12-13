@@ -4,7 +4,7 @@ import axios from 'axios';
 
 export const getUsers = async () => {
   try {
-    const response = await axios.get('http://yapi.34.23.25.139.sslip.io/v1/user/usuarios/');
+    const response = await axios.get('http://yapi.34.23.25.139.sslip.io/v1/admin/usuarios/');
     console.log('Respuesta de la API:', response.data);
     return response.data;
   } catch (error) {
@@ -16,7 +16,7 @@ export const getUsers = async () => {
 export const updateUser = async (userId, userData) => {
   try {
     console.log("ID del usuario a actualizar:", userId);
-    const response = await axios.put('http://yapi.34.23.25.139.sslip.io/v1/user/usuarios/' + userId + '/', userData);
+    const response = await axios.put('http://yapi.34.23.25.139.sslip.io/v1/admin/usuarios/' + userId + '/', userData);
     console.log('Respuesta de la API al actualizar usuario:', response.data);
     return response.data;
   } catch (error) {
@@ -27,7 +27,7 @@ export const updateUser = async (userId, userData) => {
 
 export const addUser = async (userData) => {
   try {
-    const response = await axios.post('http://yapi.34.23.25.139.sslip.io/v1/user/usuarios/', userData);
+    const response = await axios.post('http://yapi.34.23.25.139.sslip.io/v1/admin/registro/', userData);
     console.log('Respuesta de la API al agregar usuario:', response.data);
     return response.data;
   } catch (error) {
@@ -39,7 +39,7 @@ export const addUser = async (userData) => {
 export const deleteUser = async (userId) => {
   try {
     console.log("ID del usuario a eliminar:", userId);
-    const response = await axios.delete('http://yapi.34.23.25.139.sslip.io/v1/user/usuarios/' + userId + '/');
+    const response = await axios.delete('http://yapi.34.23.25.139.sslip.io/v1/admin/usuarios/' + userId + '/');
     console.log('Respuesta de la API al eliminar usuario:', response.data);
     return response.data;
   } catch (error) {

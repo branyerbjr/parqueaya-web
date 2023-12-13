@@ -12,6 +12,7 @@
       outline: none; 
     }
 }
+
 .filtro{
     display: flex;
 }
@@ -86,4 +87,3 @@
   button:hover {
     background-color: #6175c1; /* Cambiar color al pasar el ratón sobre el botón */
   }
-  

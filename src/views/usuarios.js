@@ -12,6 +12,7 @@ function Usuarios() {
   const [users, setUsers] = useState([]);
   const [updatePage, setUpdatePage] = useState(false);
   const auth = useAuth();
+  
 
   /*useEffect(() => {
     // Verificar si el usuario está autenticado
@@ -32,6 +33,16 @@ function Usuarios() {
     }
   }, [auth.isAuthenticated, updatePage]);*/
 
+  const fetchUsers = async () => {
+    try {
+      const users = await getUsers();
+      setUsers(users);
+    } catch (error) {
+      console.error('Error al obtener usuarios:', error);
+    }
+  };
+
+  fetchUsers();
 
   const handleAddUser = (newUserData) => {
     setUpdatePage((prev) => !prev);

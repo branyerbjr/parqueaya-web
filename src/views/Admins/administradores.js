@@ -32,6 +32,17 @@ function Administradores() {
     }
   }, [auth.isAuthenticated, updatePage]);*/
 
+  /*por ahora*/
+  const fetchAdmins = async () => {
+    try {
+      const admins = await getAdmins();
+      setAdmins(admins);
+    } catch (error) {
+      console.error('Error al obtener administradores:', error);
+    }
+  };
+  fetchAdmins();
+
   const handleAddUser = (newUserData) => {
     setUpdatePage((prev) => !prev);
     

@@ -1,19 +1,20 @@
 .ventana-flotante {
-    width: 90%; /* Establece el ancho al 90% del ancho del contenedor padre */
-    max-width: 600px; /* Limita el ancho máximo a 600px */
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: white;
-    padding: 20px;
-    border: 1px solid #B7C6FF;
-    border-radius: 20px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
-    
-  }
-  
+  width: 90%;
+  max-width: 600px;
+  max-height: 80vh; /* Set the maximum height to 80% of the viewport height */
+  overflow-y: auto; /* Enable vertical scrolling when content exceeds the maximum height */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border: 1px solid #B7C6FF;
+  border-radius: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
   
 /* Estilos para los inputs en la ventana flotante */
 .ventana-content label {
@@ -37,6 +38,37 @@
     transition: border-color 0.3s; /* Agrega una transición para suavizar el cambio de color */
     outline: none;
   }
+  /* insercción de la imagen*/
+  .ventana-content .imagen{
+    border: none;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    max-height: 35px;
+  }
+  .imagen-container {
+    position: relative;
+    margin-bottom: 20px;
+  }
+  
+  .image-preview-container {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .close-icon {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 16px;
+    color: black; /* You can set the color to your preference */
+    cursor: pointer;
+  }
+  
+  .preview-imagen {
+    max-width: 100%;
+    height: auto;
+  }
+  
   
   
   /* Estilos para los títulos en la ventana flotante */
