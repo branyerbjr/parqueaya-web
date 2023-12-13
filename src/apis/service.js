@@ -1,8 +1,9 @@
 import axios from 'axios';
+import API_CONFIG from './settings';
 
 export const getUsers = async () => {
   try {
-    const response = await axios.get('http://yapi.34.23.25.139.sslip.io/v1/user/usuarios/');
+    const response = await axios.get(API_CONFIG.apiUrl + '/user/usuarios/');
     console.log('Respuesta de la API:', response.data);
     return response.data;
   } catch (error) {

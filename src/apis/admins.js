@@ -1,9 +1,11 @@
-
 import axios from 'axios';
+import API_CONFIG from './settings';
 
+
+const UrlAdmin = API_CONFIG.apiUrl + '/admin/admins/';
 export const getAdmins = async () => {
     try {
-      const response = await axios.get('http://yapi.34.23.25.139.sslip.io/v1/admin/admins/');
+      const response = await axios.get(UrlAdmin);
       console.log('Respuesta de la API:', response.data);
       return response.data;
     } catch (error) {
@@ -16,7 +18,7 @@ export const getAdmins = async () => {
   export const updateUser = async (userId, userData) => {
     try {
       console.log("ID del usuario a actualizar:", userId);
-      const response = await axios.put('http://yapi.34.23.25.139.sslip.io/v1/admin/admins/' + userId + '/', userData);
+      const response = await axios.put(UrlAdmin + userId + '/', userData);
       console.log('Respuesta de la API al actualizar usuario:', response.data);
       return response.data;
     } catch (error) {
@@ -27,7 +29,7 @@ export const getAdmins = async () => {
   
   export const addUser = async (userData) => {
     try {
-      const response = await axios.post('http://yapi.34.23.25.139.sslip.io/v1/admin/admins/', userData);
+      const response = await axios.post(UrlAdmin, userData);
       console.log('Respuesta de la API al agregar usuario:', response.data);
       return response.data;
     } catch (error) {
@@ -39,7 +41,7 @@ export const getAdmins = async () => {
   export const deleteUser = async (userId) => {
     try {
       console.log("ID del usuario a eliminar:", userId);
-      const response = await axios.delete('http://yapi.34.23.25.139.sslip.io/v1/admin/admins/' + userId + '/');
+      const response = await axios.delete(UrlAdmin + userId + '/');
       console.log('Respuesta de la API al eliminar usuario:', response.data);
       return response.data;
     } catch (error) {

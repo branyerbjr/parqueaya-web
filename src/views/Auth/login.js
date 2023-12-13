@@ -37,7 +37,7 @@ function Login() {
     await auth.login(username, password);
 
     if (auth.isAuthenticated) {
-      navigate("/dash");
+      navigate("/");
     } else {
       alert("Credenciales inválidas");
     }

@@ -1,7 +1,7 @@
 import '../styles/App.css'
 import HeadNav from '../components/HeadNav';
 import FloatingMenu from '../components/FloatingMenu';
-import Card from '../components/card';
+//import Card from '../components/card';
 
 function App() {
   return (

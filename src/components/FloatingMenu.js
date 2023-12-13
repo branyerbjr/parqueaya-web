@@ -18,7 +18,8 @@ const FloatingMenu = () => {
 
   return (
     <div className="floating-menu" style={menuStyle}>
-      <i className="bi bi-person" style={iconStyle}></i>
+      <a href='dashboard'><i class="bi bi-speedometer2"></i></a>
+      <a href='usuarios'><i className="bi bi-person" style={iconStyle}></i></a>
       <a href='menu'><i className="bi bi-folder" style={iconStyle}></i></a>
       <i className="bi bi-radar" style={iconStyle}></i>
       <i class="bi bi-cash-coin"></i>

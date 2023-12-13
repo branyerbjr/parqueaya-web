@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { addUser } from "../../apis/admins";
 import HeadNav from "../../components/HeadNav";
 import FloatingMenu from "../../components/FloatingMenu";
-import Card from "../../components/card";
+import Card from "../../components/Cards/card";
 import "../../styles/Registro.css";
 import { Link } from "react-router-dom";
 

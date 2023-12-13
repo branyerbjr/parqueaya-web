@@ -3,7 +3,7 @@ import "../styles/Menu.css";
 import React from "react";
 import FloatingMenu from "../components/FloatingMenu";
 import HeadNav from "../components/HeadNav";
-import Card from "../components/menu-card";
+import Card from "../components/Cards/menu-card";
 
 const cardData = [
     {
