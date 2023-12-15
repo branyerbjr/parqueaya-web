@@ -3,6 +3,7 @@ import axios from 'axios';
 import FloatingMenu from "../../components/FloatingMenu";
 import HeadNav from "../../components/HeadNav";
 import "../../styles/Palanca.css"; 
+import API_CONFIG from '../../apis/settings';
 
 const Palanca = () => {
   const [isPalancaUp, setPalancaUp] = useState(false);
@@ -10,13 +11,13 @@ const Palanca = () => {
   const handleToggle = async () => {
     try {
       const data = {
-        id: 3,
+        id: 1,
         nombre: "servo",
         topico: "brazo/control",
         status: !isPalancaUp
       };
 
-      const response = await axios.put('http://yapi.34.23.25.139.sslip.io/v1/iot/servo/3/', data);
+      const response = await axios.put(API_CONFIG.apiUrl + '/iot/servo/1/', data);
       console.log('Respuesta de la API al actualizar palanca:', response.data);
 
       setPalancaUp(!isPalancaUp);

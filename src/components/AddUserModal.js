@@ -11,6 +11,10 @@ const AddUserModal = ({ onClose, onAddUser }) => {
     password: '',
     usuario: '',
     foto: '',
+    telefono: '',
+    dni: '',
+    provider_id: '',  // Agregado el campo provider_id
+    provider_specific_uid: '',  // Agregado el campo provider_specific_uid
   });
 
   const handleRemoveImage = () => {
@@ -19,7 +23,6 @@ const AddUserModal = ({ onClose, onAddUser }) => {
       foto: '',
     }));
   };
-  
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -50,23 +53,39 @@ const AddUserModal = ({ onClose, onAddUser }) => {
   };
 
   const handleAddUser = async () => {
-    if (!newUserData.nombres || !newUserData.apellidos || !newUserData.correo || !newUserData.password) {
+    if (
+      !newUserData.nombres ||
+      !newUserData.apellidos ||
+      !newUserData.correo ||
+      !newUserData.password ||
+      !newUserData.telefono ||
+      !newUserData.provider_id ||
+      !newUserData.provider_specific_uid ||
+      !newUserData.dni ||
+      !newUserData.photo_url
+    ) {
       alert('Por favor, complete todos los campos.');
       return;
     }
-
+  
     try {
+      // Asegúrate de que el usuario sea agregado correctamente antes de continuar
       const addedUser = await addUser({
         ...newUserData,
         fecha_registro: new Date().toISOString(),
       });
-
+  
+      // Llama a la función proporcionada onAddUser con el usuario recién agregado
       onAddUser(addedUser);
+  
+      // Cierra el modal después de agregar el usuario con éxito
       onClose();
     } catch (error) {
       console.error('Error al agregar usuario:', error);
+      // Puedes agregar un manejo de error adicional si es necesario
     }
   };
+  
 
   return (
     <div className="modal-agregar-administrador">
@@ -88,19 +107,26 @@ const AddUserModal = ({ onClose, onAddUser }) => {
               {showPassword ? <i className="fas fa-eye-slash"></i> : <i className="fas fa-eye"></i>}
             </span>
           </div>
+          <label>Teléfono:</label>
+          <input type="text" name="telefono" value={newUserData.telefono} onChange={handleInputChange} />
+          <label>DNI:</label>
+          <input type="text" name="dni" value={newUserData.dni} onChange={handleInputChange} />
+          <label>Provider ID:</label>
+          <input type="text" name="provider_id" value={newUserData.provider_id} onChange={handleInputChange} />
+          <label>Provider Specific UID:</label>
+          <input type="text" name="provider_specific_uid" value={newUserData.provider_specific_uid} onChange={handleInputChange} />
           <label>Foto del Usuario:</label>
           <div className="imagen-container">
-  <input className="imagen" type="file" accept="image/*" onChange={handleFileInputChange} />
-  {newUserData.foto && (
-    <div className="image-preview-container">
-      <span className="close-icon" onClick={handleRemoveImage}>
-        &times;
-      </span>
-      <img className="preview-imagen" src={newUserData.foto} alt="Foto de usuario" />
-    </div>
-  )}
-</div>
-
+            <input className="imagen" type="file" accept="image/*" onChange={handleFileInputChange} />
+            {newUserData.foto && (
+              <div className="image-preview-container">
+                <span className="close-icon" onClick={handleRemoveImage}>
+                  &times;
+                </span>
+                <img className="preview-imagen" src={newUserData.foto} alt="Foto de usuario" />
+              </div>
+            )}
+          </div>
 
           <button onClick={handleAddUser}>Agregar</button>
           <button onClick={onClose}>Cancelar</button>

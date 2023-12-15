@@ -42,7 +42,7 @@ const usuario = {
   fontSize: "16px",
   fontWeight: "500",
   cursor: "pointer",
-  backgroundColor: "#141537",
+  backgroundColor: "#6180EC",
   color: "#ffffff",
   border: "none",
   borderRadius: "4px",
@@ -57,7 +57,7 @@ const buttonStyle = {
   fontSize: "16px",
   fontWeight: "500",
   cursor: "pointer",
-  backgroundColor: "#141537",
+  backgroundColor: "#6180EC",
   color: "#ffffff",
   border: "none",
   borderRadius: "4px",
@@ -96,7 +96,7 @@ const HeadNav = () => {
       </div>
       <div className="right" style={textStyleMenu}>
         
-        <div style={{ position: "relative" }}>
+        <div style={{ position: "relative", marginRight: "18px" }}>
           {auth.isAuthenticated ? (
             <div style={usuario} onClick={toggleOptions}>
               <FontAwesomeIcon icon={faUser} style={{ marginRight: "8px" }} />

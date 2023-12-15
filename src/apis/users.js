@@ -6,7 +6,6 @@ const Urluser = API_CONFIG.apiUrl + '/admin/usuarios/';
 export const getUsers = async () => {
   try {
     const response = await axios.get(Urluser);
-    console.log('Respuesta de la API:', response.data);
     return response.data;
   } catch (error) {
     console.error('Error al obtener usuarios:', error);
@@ -18,7 +17,6 @@ export const updateUser = async (userId, userData) => {
   try {
     console.log("ID del usuario a actualizar:", userId);
     const response = await axios.put(Urluser + userId + '/', userData);
-    console.log('Respuesta de la API al actualizar usuario:', response.data);
     return response.data;
   } catch (error) {
     console.error('Error al actualizar usuario:', error.response.data);
