@@ -12,7 +12,7 @@ const AuthenticationError = () => {
             <div>
               <h1>Opps... Inicia Sesión primero</h1>
               <p>Para acceder a esta página, necesitas iniciar sesión.</p>
-              <Link to="/login" style={{ textDecoration: 'none' }}>
+              <Link to="/" style={{ textDecoration: 'none' }}>
                 <div className="boton">
                   <button>Login</button>
                 </div>

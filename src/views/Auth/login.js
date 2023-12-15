@@ -61,7 +61,7 @@ function Login() {
       // Autenticar como administrador
       await auth.login(username, password);
       if (auth.isAuthenticated) {
-        navigate("/");
+        navigate("/menu");
       } else {
         setErrorMessage("Credenciales inválidas");
       }
