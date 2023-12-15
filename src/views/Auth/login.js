@@ -12,8 +12,11 @@ function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  const [admins, setAdmins] = useState([]);
   const [clearInputs, setClearInputs] = useState(false);
+
+  // Agrega el estado para administradores
+  const [admins, setAdmins] = useState([]);
+
   const auth = useAuth();
   const navigate = useNavigate();
 
@@ -29,7 +32,7 @@ function Login() {
     };
 
     fetchAdmins();
-  }, []);
+  }, []); // Asegúrate de incluir 'admins' en la lista de dependencias
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -53,6 +56,7 @@ function Login() {
     // Validar si el usuario es un administrador
     const isAdmin = admins.some((admin) => admin.usuario === username && admin.contraseña === password);
 
+
     if (isAdmin) {
       // Autenticar como administrador
       await auth.login(username, password);
@@ -62,7 +66,6 @@ function Login() {
         setErrorMessage("Credenciales inválidas");
       }
     } else {
-      // Usuario no es un administrador
       setErrorMessage("El usuario no es un administrador.");
     }
   };
@@ -130,6 +133,6 @@ function Login() {
       </div>
     </div>
   );
-}
+};
 
 export default Login;
