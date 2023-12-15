@@ -1,24 +1,57 @@
+// Importa las bibliotecas y estilos necesarios
 import "../styles/TableCard.css";
 import React, { useState } from "react";
-import AddUserModal from "./AddUserModal";
+import AddUserModal from "./Modals/AddUserModal";
+import EditUserModal from "./Modals/EditUserModal";
+import DeleteUserModal from "./Modals/DeleteUserModal";
 
+// Define el componente TableCard
 const TableCard = ({
   title,
   tableData,
   setSelectedCell,
   onAddUser,
+  onUpdateUser, // Asegúrate de pasar esta función como prop
+  onDeleteUser, // Asegúrate de pasar esta función como prop
   updatePage,
 }) => {
   const [searchTerm, setSearchTerm] = React.useState("");
-  const [isModalOpen, setModalOpen] = useState(false);
+  const [isAddModalOpen, setAddModalOpen] = useState(false);
+  const [isEditModalOpen, setEditModalOpen] = useState(false);
+  const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
+  const [selectedUser, setSelectedUser] = useState(null);
 
-  const handleOpenModal = () => {
-    setModalOpen(true);
+  const handleOpenAddModal = () => {
+    setAddModalOpen(true);
   };
 
-  const handleCloseModal = () => {
-    setModalOpen(false);
+  const handleCloseAddModal = () => {
+    setAddModalOpen(false);
   };
+
+  const handleOpenEditModal = (user) => {
+    setSelectedUser(user);
+    setEditModalOpen(true);
+  };
+
+  const handleCloseEditModal = () => {
+    setSelectedUser(null);
+    setEditModalOpen(false);
+  };
+
+  const handleOpenDeleteModal = (userId) => {
+    setSelectedUser(userId);
+    setDeleteModalOpen(true);
+  };
+
+  const handleCloseDeleteModal = () => {
+    setSelectedUser(null);
+    setDeleteModalOpen(false);
+  };
+
+  const filteredData = tableData.filter((user) =>
+    user.apellidos.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   const handleAddUser = (newUserData) => {
     // Add user logic
@@ -26,32 +59,34 @@ const TableCard = ({
 
     // Llama a la función onAddUser pasada como prop
     onAddUser(newUserData);
-    handleCloseModal();
+    handleCloseAddModal();
     // Actualiza la página llamando a la función updatePage pasada como prop
     updatePage();
   };
-  const handleEditUser = (user) => {
-    // Lógica para editar un usuario (puedes abrir un modal de edición, por ejemplo)
-    console.log("Editar usuario:", user);
+
+  const handleUpdateUser = (updatedUserData) => {
+    // Update user logic
+    console.log("Updating user:", updatedUserData);
+
+    // Llama a la función onUpdateUser pasada como prop
+    onUpdateUser(updatedUserData);
+    handleCloseEditModal();
+    // Actualiza la página llamando a la función updatePage pasada como prop
+    updatePage();
   };
 
   const handleDeleteUser = (userId) => {
-    // Lógica para borrar un usuario (puedes mostrar un modal de confirmación)
-    console.log("Borrar usuario ID:", userId);
+    // Delete user logic
+    console.log("Deleting user ID:", userId);
+
+    // Llama a la función onDeleteUser pasada como prop
+    onDeleteUser(userId);
+    handleCloseDeleteModal();
+    // Actualiza la página llamando a la función updatePage pasada como prop
+    updatePage();
   };
 
-  // Función para formatear la fecha
-  const formatFechaRegistro = (fechaRegistro) => {
-    const fecha = new Date(fechaRegistro);
-    return fecha.toLocaleString(); // Puedes ajustar las opciones según tus preferencias
-  };
-
-  // Filtrar los usuarios según el término de búsqueda
-  const filteredData = tableData.filter((user) =>
-    user.apellidos.toLowerCase().includes(searchTerm.toLowerCase())
-  );
-
-  // Agregar usuarios
+  // ... Funciones y código anterior ...
 
   return (
     <div className="tabla">
@@ -68,19 +103,18 @@ const TableCard = ({
           />
         </div>
         <div className="boton-agregar">
-          {/* Botón para abrir el modal */}
-          <button className="bot" onClick={handleOpenModal}>
+          <button className="bot" onClick={handleOpenAddModal}>
             +
           </button>
-  
-          {/* Modal para agregar usuario */}
-          {isModalOpen && (
-            <AddUserModal onClose={handleCloseModal} onAddUser={handleAddUser} />
+          {isAddModalOpen && (
+            <AddUserModal
+              onClose={handleCloseAddModal}
+              onAddUser={handleAddUser}
+            />
           )}
         </div>
       </div>
-  
-      {/* Agregar la clase table-responsive al contenedor */}
+
       <div className="table-responsive">
         <table className="table">
           <thead>
@@ -90,7 +124,7 @@ const TableCard = ({
               <th>Apellidos</th>
               <th>Correo</th>
               <th>DNI.</th>
-              <th>Acciones</th> {/* Nueva columna de acciones */}
+              <th>Acciones</th>
             </tr>
           </thead>
           <tbody>
@@ -99,7 +133,7 @@ const TableCard = ({
                 <td>{user.id}</td>
                 <td
                   onClick={() => setSelectedCell(user)}
-                  style={{ fontWeight: 'bold', cursor: 'pointer' }}
+                  style={{ fontWeight: "bold", cursor: "pointer" }}
                 >
                   {user.nombres}
                 </td>
@@ -108,21 +142,37 @@ const TableCard = ({
                 <td>{user.dni}</td>
                 <td>
                   <i
-                    className="bi bi-pencil-square "
-                    onClick={() => handleEditUser(user)}
-                  >
-                  </i>
+                    className="bi bi-pencil-square"
+                    onClick={() => handleOpenEditModal(user)}
+                  ></i>
                   <i
-                    className="bi bi-trash bi-danger "
-                    onClick={() => handleDeleteUser(user.id)}
-                  >
-                  </i>
+                    type="button"
+                    className="bi bi-trash bi-danger"
+                    onClick={() => handleOpenDeleteModal(user.id)}
+                  ></i>
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
+
+      {/* Modales */}
+      {isEditModalOpen && selectedUser && (
+        <EditUserModal
+          user={selectedUser}
+          onClose={handleCloseEditModal}
+          onUpdateUser={handleUpdateUser}
+        />
+      )}
+
+      {isDeleteModalOpen && selectedUser && (
+        <DeleteUserModal
+          user={selectedUser}
+          onClose={handleCloseDeleteModal}
+          onDeleteUser={handleDeleteUser}
+        />
+      )}
     </div>
   );
 };
