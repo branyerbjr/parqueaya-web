@@ -74,7 +74,7 @@ const TableCard = ({ title, tableData, setSelectedCell, onAddUser, updatePage })
             <th>Nombres</th>
             <th>Apellidos</th>
             <th>Correo</th>
-            <th>Fecha Registro</th>
+            <th>DNI.</th>
           </tr>
         </thead>
         <tbody>
@@ -89,7 +89,7 @@ const TableCard = ({ title, tableData, setSelectedCell, onAddUser, updatePage })
               </td>
               <td>{user.apellidos}</td>
               <td>{user.correo}</td>
-              <td>{formatFechaRegistro(user.fecha_registro)}</td>
+              <td>{user.dni}</td>
             </tr>
           ))}
         </tbody>

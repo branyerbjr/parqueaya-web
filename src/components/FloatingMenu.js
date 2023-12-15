@@ -21,11 +21,11 @@ const FloatingMenu = () => {
       <a href='dashboard'><i class="bi bi-speedometer2"></i></a>
       <a href='usuarios'><i className="bi bi-person" style={iconStyle}></i></a>
       <a href='menu'><i className="bi bi-folder" style={iconStyle}></i></a>
-      <i className="bi bi-radar" style={iconStyle}></i>
-      <i class="bi bi-cash-coin"></i>
+      <a href='brocker'><i className="bi bi-radar" style={iconStyle}></i></a>
+      <a href='pagos'><i class="bi bi-cash-coin"></i></a>
       <a href='cams'><i className="bi bi-camera" style={iconStyle}></i></a>
-      <i className="bi bi-image-fill" style={iconStyle}></i>
-      <i className="bi bi-gear" style={iconStyle}></i>
+      <a href='photos'><i className="bi bi-image-fill" style={iconStyle}></i></a>
+      <a href='config'><i className="bi bi-gear" style={iconStyle}></i></a>
     </div>
   );
 }

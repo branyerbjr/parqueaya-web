@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import FloatingMenu from "../components/FloatingMenu";
-import HeadNav from "../components/HeadNav";
-// import DetallesVentanaFlotanteUsuario from "./DetallesVentanaFlotanteUsuario";
+import FloatingMenu from "../../components/FloatingMenu";
+import HeadNav from "../../components/HeadNav";
 
-function Deverices() {
+
+function Imgs() {
   return (
     <div className="Dashboard">
       <div className="fondo">
@@ -13,7 +13,6 @@ function Deverices() {
               <FloatingMenu />
             </div>
             <HeadNav />
-            
           </div>
         </div>
       </div>
@@ -21,4 +20,4 @@ function Deverices() {
   );
 }
 
-export default Deverices;
+export default Imgs;

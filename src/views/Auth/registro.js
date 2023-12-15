@@ -61,7 +61,6 @@ const Registro = ({ onClose, onAddUser }) => {
     <div className="Login">
       <div className="fondo">
         <div className="contenedor_principal">
-          
           <div>
             <div className="ventana-flotante">
               <h3>Registro</h3>
@@ -111,7 +110,7 @@ const Registro = ({ onClose, onAddUser }) => {
                   </span>
                 </div>
                 <button onClick={handleAddUser}>Agregar</button>
-                <Link to="/login" style={{ textDecoration: 'none' }}>
+                <Link to="/" style={{ textDecoration: 'none' }}>
                   <button>Cancelar</button>
               </Link>
               </div>

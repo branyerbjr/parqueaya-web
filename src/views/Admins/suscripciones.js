@@ -1,11 +1,11 @@
 // Contenedor.js
-import useAuth from "./Auth/auth";
+import useAuth from "../Auth/auth";
 import { Navigate } from "react-router-dom";
-import "../styles/Suscripciones.css";
+import "../../styles/Suscripciones.css";
 import React, { useState } from "react";
-import FloatingMenu from "../components/FloatingMenu";
-import HeadNav from "../components/HeadNav";
-import DetallesVentanaFlotante from "../components/DetallesVentanaFlotante";
+import FloatingMenu from "../../components/FloatingMenu";
+import HeadNav from "../../components/HeadNav";
+import DetallesVentanaFlotante from "../../components/DetallesVentanaFlotante";
 
 function TableCard({ title, count, tableData, setSelectedCell }) {
   const handleCellClick = (rowData) => {
@@ -61,10 +61,10 @@ function Suscripciones() {
   const auth = useAuth();
 
   // Verificar si el usuario está autenticado
-  if (!auth.isAuthenticated) {
+ /* if (!auth.isAuthenticated) {
     // Si no está autenticado, redirigir a la página de inicio de sesión
     return <Navigate to="/autentificacion" />;
-  }
+  }*/
 
   const handleCloseVentanaFlotante = () => {
     setSelectedCell(null);

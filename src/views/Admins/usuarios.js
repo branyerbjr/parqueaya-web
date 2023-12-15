@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 
-import { getUsers } from '../apis/users';
-import FloatingMenu from "../components/FloatingMenu";
-import HeadNav from "../components/HeadNav";
-import DetallesVentanaFlotanteUsuario from "../components/DetallesVentanaFlotanteUsuario";
-import TableCard from "../components/tablecard"; // Asegúrate de que la importación sea correcta
-import useAuth from "./Auth/auth";
+import { getUsers } from '../../apis/users';
+import FloatingMenu from "../../components/FloatingMenu";
+import HeadNav from "../../components/HeadNav";
+import DetallesVentanaFlotanteUsuario from "../../components/DetallesVentanaFlotanteUsuario";
+import TableCard from "../../components/tablecard"; // Asegúrate de que la importación sea correcta
+import useAuth from "../Auth/auth";
 
 function Usuarios() {
   const [selectedCell, setSelectedCell] = useState(null);

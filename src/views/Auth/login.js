@@ -1,19 +1,35 @@
 import "../../styles/Login.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import FloatingMenu from "../../components/FloatingMenu";
-import { getAdmins } from "../../apis/admins";
 import { useNavigate } from "react-router-dom";
 import useAuth from "../Auth/auth";
 import { Link } from "react-router-dom";
+import InputField from "../../components/InputField";
+import { getAdmins } from "../../apis/admins";
 
 function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [admins, setAdmins] = useState([]);
   const [clearInputs, setClearInputs] = useState(false);
   const auth = useAuth();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    // Obtener información de los administradores
+    const fetchAdmins = async () => {
+      try {
+        const adminsData = await getAdmins();
+        setAdmins(adminsData);
+      } catch (error) {
+        console.error("Error al obtener administradores:", error);
+      }
+    };
+
+    fetchAdmins();
+  }, []);
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -30,23 +46,27 @@ function Login() {
   const handleLogin = async () => {
     // Validación de campos obligatorios
     if (!username || !password) {
-      alert("Por favor, completa todos los campos.");
+      setErrorMessage("Por favor, completa todos los campos.");
       return;
     }
 
-    await auth.login(username, password);
+    // Validar si el usuario es un administrador
+    const isAdmin = admins.some((admin) => admin.usuario === username && admin.contraseña === password);
 
-    if (auth.isAuthenticated) {
-      navigate("/");
+    if (isAdmin) {
+      // Autenticar como administrador
+      await auth.login(username, password);
+      if (auth.isAuthenticated) {
+        navigate("/");
+      } else {
+        setErrorMessage("Credenciales inválidas");
+      }
     } else {
-      alert("Credenciales inválidas");
+      // Usuario no es un administrador
+      setErrorMessage("El usuario no es un administrador.");
     }
   };
 
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-  />;
   return (
     <div className="Login">
       <div className="fondo">
@@ -61,7 +81,7 @@ function Login() {
                 <label className="mb-2" htmlFor="usuario">
                   Usuario
                 </label>
-                <input
+                <InputField
                   type="text"
                   id="usuario"
                   value={clearInputs ? "" : username}
@@ -73,7 +93,7 @@ function Login() {
                   Clave
                 </label>
                 <div className="password-input">
-                  <input
+                  <InputField
                     type={showPassword ? "text" : "password"}
                     id="clave"
                     value={clearInputs ? "" : password}
@@ -98,11 +118,11 @@ function Login() {
                 ¿Olvidaste tu contraseña?
               </a>
               <div>
-                <Link to="/login/registro" style={{ textDecoration: 'none' }}>
-                <div className="boton">
-                  <a>¿No tienes cuenta? Registrate aquí</a>
-                </div>
-              </Link>
+                <Link to="/auth/registro" style={{ textDecoration: 'none' }}>
+                  <div className="boton">
+                    <a>¿No tienes cuenta? Registrate aquí</a>
+                  </div>
+                </Link>
               </div>
             </div>
           </div>
