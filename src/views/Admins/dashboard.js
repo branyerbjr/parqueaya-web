@@ -47,6 +47,7 @@ function Contenedor() {
             </div>
             <HeadNav />
             <div className="dashboard-container">
+              <h2>Dashboard</h2>
               {/* Gráfico de Transacciones */}
               <Chart
                 chartType="Calendar"
@@ -59,10 +60,14 @@ function Contenedor() {
                     parseFloat(transaccion.monto),
                   ]),
                 ]}
-                options={{ title: "Transacciones" }}
+                options={{ title: "Transacciones"
+               
+              }}
               />
 
-              {/* Gráfico de Métodos de Pago */}
+              
+              <div className="dashboard2">
+                {/* Gráfico de Métodos de Pago */}
               <div className="card">
               <Chart
                 chartType="PieChart"
@@ -91,6 +96,8 @@ function Contenedor() {
                   <p>{usuarios.length}</p>
                 </div>
              </div>
+              </div>
+              
             </div>
           </div>
         </div>

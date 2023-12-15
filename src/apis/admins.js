@@ -6,7 +6,6 @@ const UrlAdmin = API_CONFIG.apiUrl + '/admin/admins/';
 export const getAdmins = async () => {
     try {
       const response = await axios.get(UrlAdmin);
-      console.log('Respuesta de la API:', response.data);
       return response.data;
     } catch (error) {
       console.error('Error al obtener usuarios:', error);

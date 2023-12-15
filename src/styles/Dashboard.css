@@ -48,6 +48,11 @@
     left: 50%;
     min-height: 600px; 
 }
+.dashboard2{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .card {
   width: 300px;
   margin: 10px;
