@@ -72,24 +72,29 @@ const TableCard = ({
           <button className="bot" onClick={handleOpenModal}>
             +
           </button>
-  
+
           {/* Modal para agregar usuario */}
           {isModalOpen && (
-            <AddUserModal onClose={handleCloseModal} onAddUser={handleAddUser} />
+            <AddUserModal
+              onClose={handleCloseModal}
+              onAddUser={handleAddUser}
+            />
           )}
         </div>
       </div>
-  
+
       {/* Agregar la clase table-responsive al contenedor */}
       <div className="table-responsive">
         <table className="table">
           <thead>
             <tr>
               <th>ID</th>
+              <th>Foto</th>
               <th>Nombres</th>
               <th>Apellidos</th>
               <th>Correo</th>
-              <th>DNI.</th>
+              <th>Telefono</th>
+              <th>DNI</th>
               <th>Acciones</th> {/* Nueva columna de acciones */}
             </tr>
           </thead>
@@ -97,26 +102,36 @@ const TableCard = ({
             {filteredData.map((user) => (
               <tr key={user.id}>
                 <td>{user.id}</td>
-                <td
+                
+                <td>
+                    <img
+                      src={user.photo_url}
+                      style={{
+                        width: "50px",
+                        height: "50px",
+                        borderRadius: "50%",
+                      }}
+                    />
+                  </td>
+                  <td
                   onClick={() => setSelectedCell(user)}
-                  style={{ fontWeight: 'bold', cursor: 'pointer' }}
+                  style={{ fontWeight: "bold", cursor: "pointer" }}
                 >
                   {user.nombres}
                 </td>
                 <td>{user.apellidos}</td>
                 <td>{user.correo}</td>
+                <td>{user.telefono}</td>
                 <td>{user.dni}</td>
                 <td>
                   <i
                     className="bi bi-pencil-square "
                     onClick={() => handleEditUser(user)}
-                  >
-                  </i>
+                  ></i>
                   <i
                     className="bi bi-trash bi-danger "
                     onClick={() => handleDeleteUser(user.id)}
-                  >
-                  </i>
+                  ></i>
                 </td>
               </tr>
             ))}

@@ -60,11 +60,7 @@ const AddUserModal = ({ onClose, onAddUser }) => {
     <div className="modal-agregar-administrador">
       <div className="ventana-flotante">
         <h3>Agregar Administrador</h3>
-        <div className="content-2">
-          <label>
-            <i className="bi bi-person-circle"></i>
-          </label>
-        </div>
+      
         <div className="ventana-content">
           <label>Usuario:</label>
           <input
