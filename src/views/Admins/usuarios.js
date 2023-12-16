@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import { getUsers } from '../../apis/users';
+import { getUsers, deleteUser, updateUser } from '../../apis/users';
 import FloatingMenu from "../../components/FloatingMenu";
 import HeadNav from "../../components/HeadNav";
 import DetallesVentanaFlotanteUsuario from "../../components/DetallesVentanaFlotanteUsuario";
@@ -12,7 +12,16 @@ function Usuarios() {
   const [users, setUsers] = useState([]);
   const [updatePage, setUpdatePage] = useState(false);
   const auth = useAuth();
-  
+  useEffect(() => {
+    // Verificar si el usuario está autenticado
+    if (!auth.isAuthenticated) {
+      // Si no está autenticado, redirigir a la página de inicio de sesión
+      window.location.href = "/autentificacion";
+    } else {
+      // Llamar a la función fetchUsers al cargar la página y cuando se actualiza la página
+      fetchUsers();
+    }
+  }, [auth.isAuthenticated, updatePage]);
 
   /*useEffect(() => {
     // Verificar si el usuario está autenticado
@@ -52,6 +61,19 @@ function Usuarios() {
   const handleCloseVentanaFlotante = () => {
     setSelectedCell(null);
   };
+  const handleEditUser = (editedUserData) => {
+    // Lógica para editar un usuario
+    console.log('Editar usuario:', editedUserData);
+    // Actualiza la página llamando a la función updatePage
+    setUpdatePage((prev) => !prev);
+  };
+
+  const handleDeleteUser = (userId) => {
+    // Lógica para borrar un usuario
+    console.log('Borrar usuario ID:', userId);
+    // Actualiza la página llamando a la función updatePage
+    setUpdatePage((prev) => !prev);
+  };
 
   // Crea un array de objetos para cada tarjeta de tabla
   const cardtabla = [
@@ -76,13 +98,15 @@ function Usuarios() {
               <div className="tabla-usuarios">
               {cardtabla.map((card, index) => (
                 <TableCard
-                  key={index}
-                  title={card.titulo}
-                  count={card.count}
-                  tableData={card.tableData}
-                  setSelectedCell={setSelectedCell}
-                  onAddUser={handleAddUser}
-                  updatePage={updatePage} // Pasar updatePage como prop
+                key={index}
+                title={card.titulo}
+                count={card.count}
+                tableData={card.tableData}
+                setSelectedCell={setSelectedCell}
+                onAddUser={handleAddUser}
+                onDeleteUser={handleDeleteUser}  // Pasa la función handleDeleteUser como prop
+                onEditUser={handleEditUser}  // Pasa la función handleEditUser como prop
+                updatePage={updatePage}
                 />
               ))}
               </div>

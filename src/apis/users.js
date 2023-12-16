@@ -38,7 +38,7 @@ export const addUser = async (userData) => {
 export const deleteUser = async (userId) => {
   try {
     console.log("ID del usuario a eliminar:", userId);
-    const response = await axios.delete(Urluser + userId + '/');
+    const response = await axios.delete(Urluser + userId);
     console.log('Respuesta de la API al eliminar usuario:', response.data);
     return response.data;
   } catch (error) {
