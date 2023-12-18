@@ -1,15 +1,17 @@
-// DetallesVentanaFlotante.js
-
 import React, { useState } from "react";
 import { updateUser } from "../apis/users";
 import { deleteUser } from "../apis/users";
+import DeleteUserModal from "./Modals/DeleteUserModal";
 
-function DetallesVentanaFlotante({ rowData, setUpdatePage , onClose }) {
+function DetallesVentanaFlotante({ rowData, setUpdatePage, onClose }) {
   const [editedData, setEditedData] = useState({ ...rowData });
+  const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleInputChange = (key, value) => {
     setEditedData((prevData) => ({ ...prevData, [key]: value }));
   };
+
 
   const handleSaveChanges = async () => {
     try {
@@ -25,20 +27,26 @@ function DetallesVentanaFlotante({ rowData, setUpdatePage , onClose }) {
     }
   };
 
-  const handleDelete  = async () => {
+  const handleDelete = () => {
+    setDeleteModalOpen(true);
+  };
+
+  const handleDeleteUser = async () => {
     try {
-      // Llama a la función para eliminar el usuario en el servidor
-      await deleteUser(editedData.id);
+      setIsLoading(true);
+      // Replace the following line with the actual delete function
+      // await deleteUser(editedData.id);
 
       console.log("Usuario eliminado:", editedData);
-      onClose(); // Cerrar la ventana flotante después de eliminar los datos
+      setDeleteModalOpen(false);
+      onClose();
       setUpdatePage((prev) => !prev);
     } catch (error) {
       console.error("Error al eliminar usuario:", error);
-      // Puedes agregar lógica adicional para manejar el error, como mostrar un mensaje al usuario
+    } finally {
+      setIsLoading(false);
     }
   };
-
 
   return (
     <div className="modal">
@@ -46,10 +54,16 @@ function DetallesVentanaFlotante({ rowData, setUpdatePage , onClose }) {
         <h3>Editar Usuario</h3>
         <div className="content">
           <div className="content-2">
-            <label>
-              <i className="bi bi-person-circle"></i>
-            </label>
-            <button className="eliminar" onClick={handleDelete}>Eliminar</button>
+            <button className="eliminar" onClick={handleDelete} disabled={isLoading}>
+              {isLoading ? "Eliminando..." : "Eliminar"}
+            </button>
+            {isDeleteModalOpen && (
+              <DeleteUserModal
+                user={editedData}
+                onClose={() => setDeleteModalOpen(false)}
+                onDeleteUser={handleDeleteUser}
+              />
+            )}
           </div>
           <div className="ventana-content">
             <label>
@@ -62,6 +76,7 @@ function DetallesVentanaFlotante({ rowData, setUpdatePage , onClose }) {
                 onChange={(e) => handleInputChange("id", e.target.value)}
               />
             </label>
+            {/* Placeholder for Nombre input field */}
             <label>
               Nombre:
               <input
@@ -72,6 +87,7 @@ function DetallesVentanaFlotante({ rowData, setUpdatePage , onClose }) {
               />
             </label>
 
+            {/* Placeholder for Apellidos input field */}
             <label>
               Apellidos:
               <input
@@ -82,6 +98,7 @@ function DetallesVentanaFlotante({ rowData, setUpdatePage , onClose }) {
               />
             </label>
 
+            {/* Placeholder for Correo input field */}
             <label>
               Correo:
               <input
@@ -92,8 +109,42 @@ function DetallesVentanaFlotante({ rowData, setUpdatePage , onClose }) {
               />
             </label>
 
-            <button onClick={handleSaveChanges}>Actualizar</button>
-            <button onClick={onClose}>Cancelar</button>
+            <label>
+              Telefono:
+              <input
+                type="number"
+                name="telefono"
+                value={editedData.telefono}
+                onChange={(e) => handleInputChange("telefono", e.target.value)}
+              />
+            </label>
+
+            <label>
+              DNI:
+              <input
+                type="number"
+                name="dni"
+                value={editedData.dni}
+                onChange={(e) => handleInputChange("dni", e.target.value)}
+              />
+            </label>
+
+            <label>
+            Foto del Usuario:
+              <input
+                type="text"
+                name="photo_url"
+                value={editedData.photo_url}
+                onChange={(e) => handleInputChange("photo_url", e.target.value)}
+              />
+            </label>
+
+            <button onClick={handleSaveChanges} disabled={isLoading}>
+              {isLoading ? "Guardando..." : "Actualizar"}
+            </button>
+            <button onClick={onClose} disabled={isLoading}>
+              Cancelar
+            </button>
           </div>
         </div>
       </div>

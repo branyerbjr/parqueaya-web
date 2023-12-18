@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { deleteUser } from "../../apis/users";
+import { deleteUser } from "../../apis/admins";
 import "../../styles/TableCard.css";
 import DetallesVentanaFlotante from "../DetallesVentanaFlotanteUsuario";
 
@@ -18,7 +18,7 @@ const DeleteUserModal = ({ user, onClose, onDeleteUser }) => {
       setUpdatePage((prev) => !prev);
       
     } catch (error) {
-      console.error("Error al borrar administrador:", error);
+      console.error("Error al borrar usuario:", error);
     }
   };
 
@@ -29,7 +29,7 @@ const DeleteUserModal = ({ user, onClose, onDeleteUser }) => {
   return (
     <div className="modal-borrar-usuario">
       <div className="ventana-flotante">
-        <h3>Eliminar administrador</h3>
+        <h3>Eliminar Usuario</h3>
         <p>
           ¿Estás seguro de que quieres eliminar a {user.nombres} {user.apellidos}?
         </p>

@@ -111,3 +111,6 @@
     font-size: 13px;
     color: #100e0c;
   }
+  .providers{
+    display: flex;
+  }

@@ -8,7 +8,6 @@ export const getAdmins = async () => {
       const response = await axios.get(UrlAdmin);
       return response.data;
     } catch (error) {
-      console.error('Error al obtener usuarios:', error);
       throw error;
     }
   };
@@ -18,10 +17,8 @@ export const getAdmins = async () => {
     try {
       console.log("ID del usuario a actualizar:", userId);
       const response = await axios.put(UrlAdmin + userId + '/', userData);
-      console.log('Respuesta de la API al actualizar usuario:', response.data);
       return response.data;
     } catch (error) {
-      console.error('Error al actualizar usuario:', error.response.data);
       throw error;
     }
   };
@@ -29,10 +26,8 @@ export const getAdmins = async () => {
   export const addUser = async (userData) => {
     try {
       const response = await axios.post(UrlAdmin, userData);
-      console.log('Respuesta de la API al agregar usuario:', response.data);
       return response.data;
     } catch (error) {
-      console.error('Error al agregar usuario:', error.response.data);
       throw error;
     }
   };
@@ -41,10 +36,19 @@ export const getAdmins = async () => {
     try {
       console.log("ID del usuario a eliminar:", userId);
       const response = await axios.delete(UrlAdmin + userId + '/');
-      console.log('Respuesta de la API al eliminar usuario:', response.data);
       return response.data;
     } catch (error) {
-      console.error('Error al eliminar usuario:', error.response.data);
+      throw error;
+    }
+  };
+
+
+  export const loginUsuario = async (credentials) => {
+    try {
+      const response = await axios.post(API_CONFIG.apiUrl + '/admin/inicio-sesion/', credentials);
+      // Assuming the response contains a token, you can return it
+      return response.data.token;
+    } catch (error) {
       throw error;
     }
   };

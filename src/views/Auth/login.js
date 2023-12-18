@@ -6,7 +6,7 @@ import useAuth from "../Auth/auth";
 import { Link } from "react-router-dom";
 import InputField from "../../components/InputField";
 import { getAdmins } from "../../apis/admins";
-
+import {loginUsuario} from "../../apis/users";
 function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [username, setUsername] = useState("");
@@ -52,24 +52,34 @@ function Login() {
       setErrorMessage("Por favor, completa todos los campos.");
       return;
     }
-
-    // Validar si el usuario es un administrador
-    const isAdmin = admins.some((admin) => admin.usuario === username && admin.contraseña === password);
-
-
-    if (isAdmin) {
-      // Autenticar como administrador
-      await auth.login(username, password);
-      if (auth.isAuthenticated) {
-        navigate("/menu");
+  
+    console.log("Credenciales:", username, password); // Agrega esta línea
+  
+    try {
+      // Use the loginUsuario function for authentication
+      const token = await loginUsuario({ correo: username, password: password });
+  
+      console.log("Token de autenticación:", token); // Agrega esta línea
+  
+      if (token) {
+        // Autenticar como administrador with the obtained token
+        await auth.login(username, token);
+  
+        if (auth.isAuthenticated) {
+          navigate("/menu");
+        } else {
+          setErrorMessage("Credenciales inválidas");
+        }
       } else {
-        setErrorMessage("Credenciales inválidas");
+        setErrorMessage("Error al obtener el token de autenticación.");
       }
-    } else {
-      setErrorMessage("El usuario no es un administrador.");
+    } catch (error) {
+      console.error("Error al iniciar sesión:", error); // Agrega esta línea
+      setErrorMessage("Error al iniciar sesión");
     }
   };
-
+  
+  
   return (
     <div className="Login">
       <div className="fondo">
@@ -82,11 +92,11 @@ function Login() {
             <div className="formulario">
               <div className="credenciales">
                 <label className="mb-2" htmlFor="usuario">
-                  Usuario
+                  Correo
                 </label>
                 <InputField
                   type="text"
-                  id="usuario"
+                  id="correo"
                   value={clearInputs ? "" : username}
                   onChange={handleUsernameChange}
                 />
@@ -98,7 +108,7 @@ function Login() {
                 <div className="password-input">
                   <InputField
                     type={showPassword ? "text" : "password"}
-                    id="clave"
+                    id="password"
                     value={clearInputs ? "" : password}
                     onChange={handlePasswordChange}
                   />

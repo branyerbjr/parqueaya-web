@@ -3,7 +3,7 @@ import "../styles/TableCard.css";
 import React, { useState } from "react";
 import AddUserModal from "./Modals/AddUserModal";
 import EditUserModal from "./Modals/EditUserModal";
-import DeleteUserModal from "./Modals/DeleteUserModal";
+import DeleteUserModal from "./Modals/DeleteAdminModal";
 
 // Define el componente TableCard
 const TableCard = ({
@@ -13,13 +13,16 @@ const TableCard = ({
   onAddUser,
   onUpdateUser, // Asegúrate de pasar esta función como prop
   onDeleteUser, // Asegúrate de pasar esta función como prop
-  updatePage,
+  onUpdatePage, // Add this prop
+  rowData
 }) => {
-  const [searchTerm, setSearchTerm] = React.useState("");
+  const [editedData, setEditedData] = useState({ ...rowData });
+  const [searchTerm, setSearchTerm] = useState("");
   const [isAddModalOpen, setAddModalOpen] = useState(false);
   const [isEditModalOpen, setEditModalOpen] = useState(false);
   const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleOpenAddModal = () => {
     setAddModalOpen(true);
@@ -39,8 +42,8 @@ const TableCard = ({
     setEditModalOpen(false);
   };
 
-  const handleOpenDeleteModal = (userId) => {
-    setSelectedUser(userId);
+  const handleOpenDeleteModal = (user) => {
+    setSelectedUser(user);
     setDeleteModalOpen(true);
   };
 
@@ -60,8 +63,8 @@ const TableCard = ({
     // Llama a la función onAddUser pasada como prop
     onAddUser(newUserData);
     handleCloseAddModal();
-    // Actualiza la página llamando a la función updatePage pasada como prop
-    updatePage();
+    // Actualiza la página llamando a la función onUpdatePage pasada como prop
+    onUpdatePage();
   };
 
   const handleUpdateUser = (updatedUserData) => {
@@ -71,22 +74,26 @@ const TableCard = ({
     // Llama a la función onUpdateUser pasada como prop
     onUpdateUser(updatedUserData);
     handleCloseEditModal();
-    // Actualiza la página llamando a la función updatePage pasada como prop
-    updatePage();
+    // Actualiza la página llamando a la función onUpdatePage pasada como prop
+    onUpdatePage();
   };
 
-  const handleDeleteUser = (userId) => {
-    // Delete user logic
-    console.log("Deleting user ID:", userId);
+  const handleDeleteUser = async () => {
+    try {
+      setIsLoading(true);
+      // Replace the following line with the actual delete function
+      // await deleteUser(editedData.id);
 
-    // Llama a la función onDeleteUser pasada como prop
-    onDeleteUser(userId);
-    handleCloseDeleteModal();
-    // Actualiza la página llamando a la función updatePage pasada como prop
-    updatePage();
+      console.log("Usuario eliminado:", editedData);
+      handleCloseDeleteModal();
+      // Actualiza la página llamando a la función onUpdatePage pasada como prop
+      onUpdatePage();
+    } catch (error) {
+      console.error("Error al eliminar usuario:", error);
+    } finally {
+      setIsLoading(false);
+    }
   };
-
-  // ... Funciones y código anterior ...
 
   return (
     <div className="tabla">
@@ -106,27 +113,15 @@ const TableCard = ({
           <button className="bot" onClick={handleOpenAddModal}>
             +
           </button>
-<<<<<<< HEAD
-
-          {/* Modal para agregar usuario */}
-          {isModalOpen && (
-            <AddUserModal
-              onClose={handleCloseModal}
-=======
           {isAddModalOpen && (
             <AddUserModal
               onClose={handleCloseAddModal}
->>>>>>> 66814eff8f3d8034ab0cf741c81204c102b23600
               onAddUser={handleAddUser}
             />
           )}
         </div>
       </div>
 
-<<<<<<< HEAD
-      {/* Agregar la clase table-responsive al contenedor */}
-=======
->>>>>>> 66814eff8f3d8034ab0cf741c81204c102b23600
       <div className="table-responsive">
         <table className="table">
           <thead>
@@ -136,32 +131,25 @@ const TableCard = ({
               <th>Nombres</th>
               <th>Apellidos</th>
               <th>Correo</th>
-<<<<<<< HEAD
               <th>Telefono</th>
-              <th>DNI</th>
-              <th>Acciones</th> {/* Nueva columna de acciones */}
-=======
               <th>DNI.</th>
-              <th>Acciones</th>
->>>>>>> 66814eff8f3d8034ab0cf741c81204c102b23600
             </tr>
           </thead>
           <tbody>
             {filteredData.map((user) => (
               <tr key={user.id}>
                 <td>{user.id}</td>
-                
                 <td>
-                    <img
-                      src={user.photo_url}
-                      style={{
-                        width: "50px",
-                        height: "50px",
-                        borderRadius: "50%",
-                      }}
-                    />
-                  </td>
-                  <td
+                  <img
+                    src={user.photo_url}
+                    style={{
+                      width: "50px",
+                      height: "50px",
+                      borderRadius: "50%",
+                    }}
+                  />
+                </td>
+                <td
                   onClick={() => setSelectedCell(user)}
                   style={{ fontWeight: "bold", cursor: "pointer" }}
                 >
@@ -171,33 +159,13 @@ const TableCard = ({
                 <td>{user.correo}</td>
                 <td>{user.telefono}</td>
                 <td>{user.dni}</td>
-                <td>
-                  <i
-<<<<<<< HEAD
-                    className="bi bi-pencil-square "
-                    onClick={() => handleEditUser(user)}
-                  ></i>
-                  <i
-                    className="bi bi-trash bi-danger "
-                    onClick={() => handleDeleteUser(user.id)}
-=======
-                    className="bi bi-pencil-square"
-                    onClick={() => handleOpenEditModal(user)}
-                  ></i>
-                  <i
-                    type="button"
-                    className="bi bi-trash bi-danger"
-                    onClick={() => handleOpenDeleteModal(user.id)}
->>>>>>> 66814eff8f3d8034ab0cf741c81204c102b23600
-                  ></i>
-                </td>
+                
               </tr>
             ))}
           </tbody>
         </table>
       </div>
 
-      {/* Modales */}
       {isEditModalOpen && selectedUser && (
         <EditUserModal
           user={selectedUser}

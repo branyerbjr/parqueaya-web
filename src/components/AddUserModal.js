@@ -90,7 +90,7 @@ const AddUserModal = ({ onClose, onAddUser }) => {
   return (
     <div className="modal-agregar-administrador">
       <div className="ventana-flotante">
-        <h3>Agregar Usuario</h3>
+        <h3>Agregar Usuario 2</h3>
         <div className="ventana-content">
           <label>Usuario:</label>
           <input type="text" name="usuario" value={newUserData.usuario} onChange={handleInputChange} />

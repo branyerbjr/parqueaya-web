@@ -9,7 +9,7 @@ const AddUserModal = ({ onClose, onAddUser }) => {
     usuario: "",
     nombres: "",
     apellidos: "",
-    contraseña: "",
+    contrasena: "",
     // Otros campos según tus necesidades
   });
 
@@ -31,7 +31,7 @@ const AddUserModal = ({ onClose, onAddUser }) => {
       !newUserData.usuario ||
       !newUserData.nombres ||
       !newUserData.apellidos ||
-      !newUserData.contraseña
+      !newUserData.contrasena
     ) {
       alert("Por favor, complete todos los campos.");
       return;
@@ -89,8 +89,8 @@ const AddUserModal = ({ onClose, onAddUser }) => {
           <div className="password-input">
             <input
               type={showPassword ? "text" : "password"}
-              name="contraseña"
-              value={newUserData.contraseña}
+              name="contrasena"
+              value={newUserData.contrasena}
               onChange={handleInputChange}
             />
             <span className="eye-icon" onClick={togglePasswordVisibility}>

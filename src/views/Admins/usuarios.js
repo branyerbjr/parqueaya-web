@@ -12,23 +12,8 @@ function Usuarios() {
   const [users, setUsers] = useState([]);
   const [updatePage, setUpdatePage] = useState(false);
   const auth = useAuth();
-  useEffect(() => {
-    // Verificar si el usuario está autenticado
-    if (!auth.isAuthenticated) {
-      // Si no está autenticado, redirigir a la página de inicio de sesión
-      window.location.href = "/autentificacion";
-    } else {
-      // Llamar a la función fetchUsers al cargar la página y cuando se actualiza la página
-      fetchUsers();
-    }
-  }, [auth.isAuthenticated, updatePage]);
 
-  /*useEffect(() => {
-    // Verificar si el usuario está autenticado
-    if (!auth.isAuthenticated) {
-      // Si no está autenticado, redirigir a la página de inicio de sesión
-      window.location.href = "/autentificacion";
-    } else {
+  useEffect(() => {
       const fetchUsers = async () => {
         try {
           const users = await getUsers();
@@ -39,19 +24,9 @@ function Usuarios() {
       };
 
       fetchUsers();
-    }
-  }, [auth.isAuthenticated, updatePage]);*/
+    });
+    
 
-  const fetchUsers = async () => {
-    try {
-      const users = await getUsers();
-      setUsers(users);
-    } catch (error) {
-      console.error('Error al obtener usuarios:', error);
-    }
-  };
-
-  fetchUsers();
 
   const handleAddUser = (newUserData) => {
     setUpdatePage((prev) => !prev);
@@ -79,7 +54,6 @@ function Usuarios() {
   const cardtabla = [
     {
       titulo: "Usuarios",
-      count: users.length,
       tableData: users,
     },
     // Agrega más tarjetas de tabla según tus necesidades

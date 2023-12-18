@@ -3,13 +3,17 @@
 import React, { useState } from "react";
 import { updateUser } from "../apis/admins";
 import { deleteUser } from "../apis/admins";
+import DeleteUserModal from "./Modals/DeleteAdminModal";
 
 function DetallesVentanaFlotante({ rowData, setUpdatePage , onClose }) {
   const [editedData, setEditedData] = useState({ ...rowData });
+  const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleInputChange = (key, value) => {
     setEditedData((prevData) => ({ ...prevData, [key]: value }));
   };
+
 
   const handleSaveChanges = async () => {
     try {
@@ -25,31 +29,44 @@ function DetallesVentanaFlotante({ rowData, setUpdatePage , onClose }) {
     }
   };
 
-  const handleDelete  = async () => {
+
+  const handleDelete = () => {
+    setDeleteModalOpen(true);
+  };
+
+  const handleDeleteUser = async () => {
     try {
-      // Llama a la función para eliminar el usuario en el servidor
-      await deleteUser(editedData.id);
+      setIsLoading(true);
+      // Replace the following line with the actual delete function
+      // await deleteUser(editedData.id);
 
       console.log("Usuario eliminado:", editedData);
-      onClose(); // Cerrar la ventana flotante después de eliminar los datos
+      setDeleteModalOpen(false);
+      onClose();
       setUpdatePage((prev) => !prev);
     } catch (error) {
       console.error("Error al eliminar usuario:", error);
-      // Puedes agregar lógica adicional para manejar el error, como mostrar un mensaje al usuario
+    } finally {
+      setIsLoading(false);
     }
   };
-
 
   return (
     <div className="modal">
       <div className="ventana-flotante">
-        <h3>Editar Usuario</h3>
+        <h3>Editar Administrador</h3>
         <div className="content">
           <div className="content-2">
-            <label>
-              <i className="bi bi-person-circle"></i>
-            </label>
-            <button className="eliminar" onClick={handleDelete}>Eliminar</button>
+            <button className="eliminar" onClick={handleDelete} disabled={isLoading}>
+              {isLoading ? "Eliminando..." : "Eliminar"}
+            </button>
+            {isDeleteModalOpen && (
+              <DeleteUserModal
+                user={editedData}
+                onClose={() => setDeleteModalOpen(false)}
+                onDeleteUser={handleDeleteUser}
+              />
+            )}
           </div>
           <div className="ventana-content">
             <label>
