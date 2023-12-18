@@ -25,7 +25,7 @@ const FloatingMenu = () => {
       <a href='pagos'><i class="bi bi-cash-coin"></i></a>
       <a href='cams'><i className="bi bi-camera" style={iconStyle}></i></a>
       <a href='photos'><i className="bi bi-image-fill" style={iconStyle}></i></a>
-      <a href='config'><i className="bi bi-gear" style={iconStyle}></i></a>
+      <a href='palanca'><i className="bi bi-gear" style={iconStyle}></i></a>
     </div>
   );
 }
